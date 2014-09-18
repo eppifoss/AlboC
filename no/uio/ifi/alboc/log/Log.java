@@ -77,6 +77,9 @@ public class Log {
 	if (! doLogParser && ! doLogScanner) return;
 
 	//-- Must be changed in part 0:
+	//Modified siddharp
+	writeLogLine(" "+lineNum+":  "+line);
+	//end Modified
     }
 	
     /**
@@ -88,6 +91,19 @@ public class Log {
 	if (! doLogScanner) return;
 
 	//-- Must be changed in part 0:
+
+	//Modified siddharp
+	if(Scanner.nextToken == nameToken ){
+	    System.out.println("Scanner:\t"+Scanner.nextToken+" "+Scanner.nextName);
+	    writeLogLine("Scanner:\t"+Scanner.nextToken+" "+Scanner.nextName);
+	}else if (Scanner.nextToken == numberToken ){
+	    System.out.println("Scanner:\t"+Scanner.nextToken+" "+Scanner.nextNum);
+	    writeLogLine("Scanner:\t"+Scanner.nextToken+" "+Scanner.nextNum);
+	}else{
+	    System.out.println("Scanner:\t"+Scanner.nextToken);
+	    writeLogLine("Scanner:\t"+Scanner.nextToken);
+	}
+	//end Modified
     }
 
     public static void noteBinding(String name, int lineNum, int useLineNum) {

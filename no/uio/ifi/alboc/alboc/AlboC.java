@@ -83,7 +83,7 @@ public class AlboC {
 		CharGenerator.init();  Scanner.init();  Syntax.init();
 		
 		if (testScanner) {
-		    System.out.print("Scanning...");
+		    //System.out.print("Scanning...");
 		    while (Scanner.nextToken != eofToken) 
 			Scanner.readNext();
 		} else {

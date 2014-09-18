@@ -16,8 +16,9 @@ public class CharGenerator {
     public static char curC, nextC;
 	
     private static LineNumberReader sourceFile = null;
-    private static String sourceLine;
-    private static int sourcePos;
+    private static String sourceLine , tempLine;
+    private static int sourcePos, tempNum;
+    
 	
     public static void init() {
 	try {
@@ -25,7 +26,7 @@ public class CharGenerator {
 	} catch (FileNotFoundException e) {
 	    Error.error("Cannot read " + AlboC.sourceName + "!");
 	}
-	sourceLine = "";  sourcePos = 0;  curC = nextC = ' ';
+	tempLine = sourceLine = "";  tempNum = sourcePos = 0;  curC = nextC = ' ';
 	readNext();  readNext();
     }
 	
@@ -41,7 +42,36 @@ public class CharGenerator {
 	
     public static boolean isMoreToRead() {
 	//-- Must be changed in part 0:
-	return false;
+	
+	//Modified siddharp
+
+	//Checks if thre is more to read.
+	
+	//Check sourceLine has more to read? and that sourceLine is not null; Return true if so
+	if((sourceLine != null) && (sourceLine.length() > sourcePos)) return true;
+
+	else{
+
+	    try{
+
+		sourcePos = 0;		
+		sourceLine = sourceFile.readLine();                      
+
+		//Skip through the comment line and empty lines while printing it
+		//in screen and logging it.
+		while(sourceLine.equals("") || sourceLine.charAt(0) == '#'){
+
+		    System.out.println(sourceFile.getLineNumber()+":    "+sourceLine);
+		    Log.noteSourceLine(sourceFile.getLineNumber(),sourceLine);
+		    sourceLine = sourceFile.readLine();
+		}
+		return true;
+	    }catch(Exception e) {
+		return false;
+	    }
+
+	}
+	//end modified
     }
 	
     public static int curLineNum() {
@@ -50,8 +80,36 @@ public class CharGenerator {
 	
     public static void readNext() {
 	curC = nextC;
-	if (! isMoreToRead()) return;
 
 	//-- Must be changed in part 0:
+	//Modified siddharp
+
+	if( tempLine != null){
+	    System.out.println(tempNum+":    "+tempLine);
+	    Log.noteSourceLine(tempNum,tempLine);
+	    tempLine = null;
+	}
+	
+	if (! isMoreToRead()) return;
+
+	
+	if(sourceLine.length() <= 1){
+	    tempLine = sourceLine;
+	    tempNum = sourceFile.getLineNumber();
+	}
+
+	if(sourcePos == 1){
+	    Log.noteSourceLine(sourceFile.getLineNumber(),sourceLine);
+	    System.out.println(sourceFile.getLineNumber()+":    "+sourceLine);
+	}
+
+	nextC = sourceLine.charAt(sourcePos++);
+	if(curC == '/' && nextC == '*'){
+	    while (! (curC == '*' && nextC == '/')){
+		readNext();
+	    }
+	    readNext(); readNext();
+	}
+	//end modified
     }
 }

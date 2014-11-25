@@ -1,0 +1,9 @@
+ 0:  
+ 1:  /*
+ 2:  # Dette programmet er ikke riktig.0
+ 3:  # Det vil gi en feilmelding. */
+ 4:  
+ 5:  int main ()
+ 6:  {
+ 7:     putchar('!');  putchar(10);
+ 8:  }

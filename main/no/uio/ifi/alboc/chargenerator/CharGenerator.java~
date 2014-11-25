@@ -105,10 +105,24 @@ public class CharGenerator {
 
 	nextC = sourceLine.charAt(sourcePos++);
 	if(curC == '/' && nextC == '*'){
+	    int commentStart = curLineNum();
+	    		
 	    while (! (curC == '*' && nextC == '/')){
 		readNext();
+		if( (curC == '/') && (nextC == '*')){
+		    Error.error(commentStart," cannot have comment inside a comment!");
+		    Log.noteError("Has comment inside a comment in line "+ commentStart+" !");
+		}
+
+		if(curC == '\0' || nextToken == eofToken){
+		    //System.out.println("Error");
+		    Error.error(commentStart," comment never ends!");
+		    Log.noteError("Comment never ends in line "+ commentStart+" !");
+		}
 	    }
 	    readNext(); readNext();
+
+
 	}
 	//end modified
     }

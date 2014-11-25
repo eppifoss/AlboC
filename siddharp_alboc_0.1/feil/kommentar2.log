@@ -1,0 +1,26 @@
+ 0:  
+ 1:  /* Dette programmet sjekker kommentarer.
+ 2:     For eksempel er /* indre kommentarer */ ikke lov.
+ 3:  */
+ 4:  
+ 5:  int main ()
+Scanner:	intToken
+Scanner:	nameToken main
+Scanner:	leftParToken
+Scanner:	rightParToken
+ 6:  {
+Scanner:	leftCurlToken
+ 7:     putchar('!');  putchar(10);
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 33
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 10
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 8:  }
+Scanner:	rightCurlToken
+Scanner:	eofToken

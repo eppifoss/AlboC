@@ -92,6 +92,7 @@ public class Scanner {
 	if(isLetterAZ(CharGenerator.curC)){
 	    nextName = nextName + CharGenerator.curC;
 	    return 0;
+	}
 	}else if (CharGenerator.curC == '\''){
 	    nextNum = CharGenerator.nextC;
 	    CharGenerator.readNext();

@@ -1,0 +1,25 @@
+ 0:  
+ 1:  int main ()
+Scanner:	intToken
+Scanner:	nameToken main
+Scanner:	leftParToken
+Scanner:	rightParToken
+ 2:  {
+Scanner:	leftCurlToken
+ 3:     /* Dette er lovlig: */  putchar(''');
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 39
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 4:     /* Dette også:      */  putchar('#');
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 35
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 5:     /* Men ikke dette:  */  putchar('
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+ 6:  ');
+AlboC error in line 6: Illegal symbol: '''!

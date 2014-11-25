@@ -1,0 +1,395 @@
+ 1:  # Test all the operators
+ 2:  
+ 0:  
+ 3:  int print (int x, int op1, int op2, int y, int res)
+Scanner:	intToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	intToken
+Scanner:	nameToken x
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken op1
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken op2
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken y
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken res
+ 4:  {
+Scanner:	rightParToken
+ 5:    putint(x);  putchar(' ');  putchar(op1);  
+Scanner:	leftCurlToken
+Scanner:	nameToken putint
+Scanner:	leftParToken
+Scanner:	nameToken x
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	nameToken op1
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 6:    if (op2 != ' ') { putchar(op2); }  
+Scanner:	ifToken
+Scanner:	leftParToken
+Scanner:	nameToken op2
+Scanner:	notEqualToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	leftCurlToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	nameToken op2
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	rightCurlToken
+ 7:    putchar(' ');  putint(y);  putchar(' ');  putchar('=');  
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putint
+Scanner:	leftParToken
+Scanner:	nameToken y
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 61
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 8:    putchar(' ');  putint(res);  putchar(10);
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putint
+Scanner:	leftParToken
+Scanner:	nameToken res
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 10
+Scanner:	rightParToken
+ 10:  
+ 9:  }
+Scanner:	semicolonToken
+ 11:  int test (int a, int b)
+Scanner:	rightCurlToken
+Scanner:	intToken
+Scanner:	nameToken test
+Scanner:	leftParToken
+Scanner:	intToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken b
+ 12:  {
+Scanner:	rightParToken
+ 13:    print(a, '+', ' ', b, a+b);
+Scanner:	leftCurlToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 43
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	addToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 14:    print(a, '-', ' ', b, a-b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 45
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	subtractToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 15:    print(a, '*', ' ', b, a*b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 42
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	starToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 16:    print(a, '/', ' ', b, a/b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 47
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	divideToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 17:    print(a, '=', '=', b, a==b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 61
+Scanner:	commaToken
+Scanner:	numberToken 61
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	equalToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 18:    print(a, '!', '=', b, a!=b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 33
+Scanner:	commaToken
+Scanner:	numberToken 61
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	notEqualToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 19:    print(a, '<', ' ', b, a<b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 60
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	lessToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 20:    print(a, '<', '=', b, a<=b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 60
+Scanner:	commaToken
+Scanner:	numberToken 61
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	lessEqualToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 21:    print(a, '>', ' ', b, a>b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 62
+Scanner:	commaToken
+Scanner:	numberToken 32
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	greaterToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 22:    print(a, '>', '=', b, a>=b);
+Scanner:	semicolonToken
+Scanner:	nameToken print
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	numberToken 62
+Scanner:	commaToken
+Scanner:	numberToken 61
+Scanner:	commaToken
+Scanner:	nameToken b
+Scanner:	commaToken
+Scanner:	nameToken a
+Scanner:	greaterEqualToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 24:  
+ 23:  }
+Scanner:	semicolonToken
+ 25:  int main () 
+Scanner:	rightCurlToken
+Scanner:	intToken
+Scanner:	nameToken main
+Scanner:	leftParToken
+Scanner:	rightParToken
+ 26:  {
+ 27:    int va[3];  int vb[3];  int ia;  int ib;
+Scanner:	leftCurlToken
+Scanner:	intToken
+Scanner:	nameToken va
+Scanner:	leftBracketToken
+Scanner:	numberToken 3
+Scanner:	rightBracketToken
+Scanner:	semicolonToken
+Scanner:	intToken
+Scanner:	nameToken vb
+Scanner:	leftBracketToken
+Scanner:	numberToken 3
+Scanner:	rightBracketToken
+Scanner:	semicolonToken
+Scanner:	intToken
+Scanner:	nameToken ia
+Scanner:	semicolonToken
+Scanner:	intToken
+ 28:  
+Scanner:	nameToken ib
+ 29:    va[0] = -3;   va[1] = 0;  va[2] = 17;
+Scanner:	semicolonToken
+Scanner:	nameToken va
+Scanner:	leftBracketToken
+Scanner:	numberToken 0
+Scanner:	rightBracketToken
+Scanner:	assignToken
+Scanner:	numberToken -3
+Scanner:	semicolonToken
+Scanner:	nameToken va
+Scanner:	leftBracketToken
+Scanner:	numberToken 1
+Scanner:	rightBracketToken
+Scanner:	assignToken
+Scanner:	numberToken 0
+Scanner:	semicolonToken
+Scanner:	nameToken va
+Scanner:	leftBracketToken
+Scanner:	numberToken 2
+Scanner:	rightBracketToken
+Scanner:	assignToken
+Scanner:	numberToken 17
+ 30:    vb[0] = -32;  vb[1] = 2;  vb[2] = 17;
+Scanner:	semicolonToken
+Scanner:	nameToken vb
+Scanner:	leftBracketToken
+Scanner:	numberToken 0
+Scanner:	rightBracketToken
+Scanner:	assignToken
+Scanner:	numberToken -32
+Scanner:	semicolonToken
+Scanner:	nameToken vb
+Scanner:	leftBracketToken
+Scanner:	numberToken 1
+Scanner:	rightBracketToken
+Scanner:	assignToken
+Scanner:	numberToken 2
+Scanner:	semicolonToken
+Scanner:	nameToken vb
+Scanner:	leftBracketToken
+Scanner:	numberToken 2
+Scanner:	rightBracketToken
+Scanner:	assignToken
+ 31:  
+Scanner:	numberToken 17
+ 32:    for (ia = 0;  ia < 3;  ia = ia+1) {
+Scanner:	semicolonToken
+Scanner:	forToken
+Scanner:	leftParToken
+Scanner:	nameToken ia
+Scanner:	assignToken
+Scanner:	numberToken 0
+Scanner:	semicolonToken
+Scanner:	nameToken ia
+Scanner:	lessToken
+Scanner:	numberToken 3
+Scanner:	semicolonToken
+Scanner:	nameToken ia
+Scanner:	assignToken
+Scanner:	nameToken ia
+Scanner:	addToken
+Scanner:	numberToken 1
+Scanner:	rightParToken
+ 33:      for (ib = 0;  ib < 3;  ib = ib+1) {
+Scanner:	leftCurlToken
+Scanner:	forToken
+Scanner:	leftParToken
+Scanner:	nameToken ib
+Scanner:	assignToken
+Scanner:	numberToken 0
+Scanner:	semicolonToken
+Scanner:	nameToken ib
+Scanner:	lessToken
+Scanner:	numberToken 3
+Scanner:	semicolonToken
+Scanner:	nameToken ib
+Scanner:	assignToken
+Scanner:	nameToken ib
+Scanner:	addToken
+Scanner:	numberToken 1
+Scanner:	rightParToken
+ 34:        test(va[ia], vb[ib]);
+Scanner:	leftCurlToken
+Scanner:	nameToken test
+Scanner:	leftParToken
+Scanner:	nameToken va
+Scanner:	leftBracketToken
+Scanner:	nameToken ia
+Scanner:	rightBracketToken
+Scanner:	commaToken
+Scanner:	nameToken vb
+Scanner:	leftBracketToken
+Scanner:	nameToken ib
+Scanner:	rightBracketToken
+Scanner:	rightParToken
+ 35:      }
+Scanner:	semicolonToken
+ 36:    }
+Scanner:	rightCurlToken
+Scanner:	eofToken

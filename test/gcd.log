@@ -1,0 +1,138 @@
+ 0:  
+ 1:  # Program 'gcd'
+ 2:  # -------------
+ 3:  # A program to compute the greatest common divisor.
+ 4:  
+ 5:  int LF;  /* Line feed */
+Scanner:	intToken
+Scanner:	nameToken LF
+Scanner:	semicolonToken
+ 6:  
+ 7:  int gcd (int a, int b)
+Scanner:	intToken
+Scanner:	nameToken gcd
+Scanner:	leftParToken
+Scanner:	intToken
+Scanner:	nameToken a
+Scanner:	commaToken
+Scanner:	intToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+ 8:  {  /* Computes the gcd of a and b. */
+Scanner:	leftCurlToken
+ 9:  
+ 10:     while (a != b) {
+Scanner:	whileToken
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	notEqualToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+Scanner:	leftCurlToken
+ 11:        if (a < b) {
+Scanner:	ifToken
+Scanner:	leftParToken
+Scanner:	nameToken a
+Scanner:	lessToken
+Scanner:	nameToken b
+Scanner:	rightParToken
+Scanner:	leftCurlToken
+ 12:  	 b = b-a;
+Scanner:	nameToken b
+Scanner:	assignToken
+Scanner:	nameToken b
+Scanner:	subtractToken
+Scanner:	nameToken a
+Scanner:	semicolonToken
+ 13:        } else {
+Scanner:	rightCurlToken
+Scanner:	elseToken
+Scanner:	leftCurlToken
+ 14:  	 a = a-b;
+Scanner:	nameToken a
+Scanner:	assignToken
+Scanner:	nameToken a
+Scanner:	subtractToken
+Scanner:	nameToken b
+Scanner:	semicolonToken
+ 15:        }
+Scanner:	rightCurlToken
+ 16:     }
+Scanner:	rightCurlToken
+ 17:     return a;
+Scanner:	returnToken
+ 19:  
+Scanner:	nameToken a
+Scanner:	semicolonToken
+ 18:  }
+Scanner:	rightCurlToken
+ 20:  int main ()
+Scanner:	intToken
+Scanner:	nameToken main
+Scanner:	leftParToken
+Scanner:	rightParToken
+ 21:  {  
+Scanner:	leftCurlToken
+ 22:     int v1;  int v2;
+Scanner:	intToken
+Scanner:	nameToken v1
+Scanner:	semicolonToken
+Scanner:	intToken
+ 23:  
+Scanner:	nameToken v2
+Scanner:	semicolonToken
+ 24:     LF = 10; ; 
+Scanner:	nameToken LF
+Scanner:	assignToken
+Scanner:	numberToken 10
+Scanner:	semicolonToken
+Scanner:	semicolonToken
+ 25:     putchar('#');  putchar(' ');
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 35
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	numberToken 32
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 26:     v1 = getint();   v2 = getint();
+Scanner:	nameToken v1
+Scanner:	assignToken
+Scanner:	nameToken getint
+Scanner:	leftParToken
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken v2
+Scanner:	assignToken
+Scanner:	nameToken getint
+Scanner:	leftParToken
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 27:     putint(gcd(v1,v2));  putchar(LF);
+Scanner:	nameToken putint
+Scanner:	leftParToken
+Scanner:	nameToken gcd
+Scanner:	leftParToken
+Scanner:	nameToken v1
+Scanner:	commaToken
+Scanner:	nameToken v2
+Scanner:	rightParToken
+Scanner:	rightParToken
+Scanner:	semicolonToken
+Scanner:	nameToken putchar
+Scanner:	leftParToken
+Scanner:	nameToken LF
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 28:     exit(0);
+Scanner:	nameToken exit
+Scanner:	leftParToken
+Scanner:	numberToken 0
+Scanner:	rightParToken
+Scanner:	semicolonToken
+ 29:  }
+Scanner:	rightCurlToken
+Scanner:	eofToken

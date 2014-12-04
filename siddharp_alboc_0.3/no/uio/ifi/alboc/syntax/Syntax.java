@@ -62,7 +62,6 @@ public class Syntax {
     }
  
     public static void genCode() {
-	System.out.println("Code:\t Syntax");	
 	program.genCode(null);
     }
  
@@ -105,7 +104,6 @@ class Program extends SyntaxUnit {
      
     @Override
     void check(DeclList curDecls) {
-	System.out.println("\nCheck:\tPROGAM!");
 	progDecls.check(curDecls);
 
 	if (! AlboC.noLink) {
@@ -118,14 +116,12 @@ class Program extends SyntaxUnit {
 		    error("main cannot have arguments");
 		}
 	    }
-	    System.out.println("OK_MAIN: has no params");
 	}
 	
     }
          
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tProgram");	
 	progDecls.genCode(null);
     }
  
@@ -162,11 +158,9 @@ abstract class DeclList extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tDeclList");
 	outerScope = curDecls;
 	Declaration dx = firstDecl;
 	while (dx != null) {
-	    System.out.println("Checking decl: "+dx.name);
 	    dx.check(this);
 	    dx = dx.nextDecl;
 	}
@@ -238,7 +232,6 @@ class GlobalDeclList extends DeclList {
 
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tGlobalDeclList");
 	//-- Must be changed in part 2:
 	Declaration cur = firstDecl;
 	if(! (firstDecl instanceof FuncDecl)){
@@ -283,7 +276,6 @@ class LocalDeclList extends DeclList {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tLDL");
 	//-- Must be changed in part 2:
 	Declaration cur = firstDecl;
 	int s= 0;
@@ -313,7 +305,6 @@ class LocalDeclList extends DeclList {
 class ParamDeclList extends DeclList {
      
     @Override void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tPDL");
 	//-- Must be changed in part 2:
 	int ad = 8;
 	Declaration cur = this.firstDecl;
@@ -341,6 +332,18 @@ class ParamDeclList extends DeclList {
 	}
 	return pdl;
     }
+
+    Type get(int i){
+	int x = 1;
+	Declaration cur = this.firstDecl;
+	while( cur != null ){
+	    if( i == x){
+		return cur.type;
+	    }
+	    cur = cur.nextDecl;
+	}
+	return null;
+    }
  
     @Override
     void printTree() {
@@ -363,7 +366,6 @@ class DeclType extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tDeclType");	
 	type = Types.intType;
 	for (int i = 1;  i <= numStars;  ++i)
 	    type = new PointerType(type);
@@ -472,7 +474,6 @@ abstract class VarDecl extends Declaration {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tVARDECl");
 	//-- Must be changed in part 2:
 	visible = true;
 	typeSpec.check(curDecls);
@@ -529,7 +530,6 @@ class GlobalVarDecl extends VarDecl {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tGVD");
 	//-- Must be changed in part 2:
 	Code.genInstr("",".globl", assemblerName,"");
 	if(isArray){
@@ -569,7 +569,6 @@ class LocalVarDecl extends VarDecl {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tLVD");
 	//-- Must be changed in part 2:
     }
  
@@ -604,7 +603,6 @@ class ParamDecl extends VarDecl {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tPD");
 	//-- Must be changed in part 2:
     }
  
@@ -649,12 +647,10 @@ class FuncDecl extends Declaration {
     
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tFuncDecl");
 	//-- Must be changed in part 2:
 	visible = true;
 	typeSpec.check(curDecls);
 	type = typeSpec.type;
-	System.out.println("'\n'--FuncParams Check _OK_");
 	if(funcParams != null){
 	    funcParams.check(curDecls);
 	    fb.check(funcParams);
@@ -680,7 +676,6 @@ class FuncDecl extends Declaration {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tFuncDecl");
 	//-- Must be changed in part 2:
 
 	Code.genInstr("",".globl",assemblerName,"");
@@ -693,7 +688,6 @@ class FuncDecl extends Declaration {
 	    funcParams.genCode(this);
 	}
 	fb.genCode(this);
-	System.out.println("OK");
 	Code.genInstr(exitLabel,"","","");
 	Code.genInstr("","leave","","");
 	Code.genInstr("", "ret","","end "+assemblerName);
@@ -737,20 +731,12 @@ class FuncBody extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tFuncBody");
-	if(ldl == null){
-	    System.out.println("_______LDL=null");
-	}
 	ldl.check(curDecls);
-	if(sl == null){
-	    System.out.println("_______SL=null");
-	}
 	sl.check(ldl);
     }
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tFuncBody");
     	ldl.genCode(curFunc);
 	sl.genCode(curFunc);
     }
@@ -790,7 +776,6 @@ class StatmList extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tStatmList");
 	//-- Must be changed in part 2:
 	Statement cur = firstStatm;
 	while(cur != null){
@@ -801,7 +786,6 @@ class StatmList extends SyntaxUnit {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("Code:\tStatmList");
 	//-- Must be changed in part 2:
 	Statement cur = firstStatm;
 	while(cur != null){
@@ -883,7 +867,6 @@ class EmptyStatm extends Statement {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tEmptyStatm");
 	//-- Must be changed in part 2:
     }
  
@@ -917,7 +900,6 @@ class ForStatm extends Statement {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tForStatm");
 	//-- Must be changed in part 2:
 	test.check(curDecls);
 	body.check(curDecls);
@@ -932,7 +914,6 @@ class ForStatm extends Statement {
  
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tFOR_STATM");
 	//-- Must be changed in part 2:
 	String testLabel = Code.getLocalLabel();
 	String endLabel = Code.getLocalLabel();
@@ -987,7 +968,6 @@ class ForControl extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tForControl");
 	a1.check(curDecls);
 	e.check(curDecls);
 	a2.check(curDecls);
@@ -995,7 +975,6 @@ class ForControl extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tFOR_TEST");
 	//-- Must be changed in part 2:
 	a1.genCode(curFunc);	
     }
@@ -1032,7 +1011,6 @@ class Assignment extends SyntaxUnit {
  
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tAssignment");
 	lhs.check(curDecls);
 	e.check(curDecls);
 	Log.noteTypeCheck(" v = e",lhs.type,"v",e.type,"e",
@@ -1048,7 +1026,6 @@ class Assignment extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tASSIGNMENT");
 	//-- Must be changed in part 2:
 	if(lhs.var.index != null){
 	    lhs.var.index.genCode(curFunc);
@@ -1090,7 +1067,6 @@ class IfStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tIFStatm");
 	//-- Must be changed in part 2:
 	test.check(curDecls);
 	body.check(curDecls);
@@ -1107,7 +1083,6 @@ class IfStatm extends Statement {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\tIF_STATM");
 	//-- Must be changed in part 2:
 	String testLabel = Code.getLocalLabel();
 	String endLabel = Code.getLocalLabel();
@@ -1115,7 +1090,6 @@ class IfStatm extends Statement {
 	test.genCode(curFunc);
 	Code.genInstr("", "cmpl","$0,%eax","");
 
-	System.out.println("ELSE == " +elsepart );
 
 	if(elsepart == null){
 	    Code.genInstr("","je",testLabel,"");
@@ -1178,14 +1152,12 @@ class ElseStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tElseStatm");
 	//-- Must be changed in part 2:
 	body.check(curDecls);
     }
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t ELSE");
 	//-- Must be changed in part 2:
 	body.genCode(curFunc);
     }
@@ -1220,14 +1192,12 @@ class AssignStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tAssignStatm");
 	//-- Must be changed in part 2:
 	a.check(curDecls);
     }
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t AssignStatm");	
 	//-- Must be changed in part 2:
 	a.genCode(curFunc);
     }
@@ -1258,14 +1228,12 @@ class ReturnStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tReturnStatm");
 	//-- Must be changed in part 2:
 	
 	e.check(curDecls);
 	Log.noteTypeCheck("return e; in int f(...)",
 			  e.type,"e",lineNum );
 
-	System.out.println("____ Return e.type= "+e.type);
 	if(e.type == Types.intType){
 	    
 	}else{
@@ -1275,7 +1243,6 @@ class ReturnStatm extends Statement {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t ReturnStatm");	
 	//-- Must be changed in part 2:
 	if(e != null){
 	    e.genCode(curFunc);
@@ -1311,7 +1278,6 @@ class WhileStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tWhileStatm");
 	test.check(curDecls);
 	body.check(curDecls);
 	Log.noteTypeCheck("while (t) ...", test.type, "t", lineNum);
@@ -1324,7 +1290,6 @@ class WhileStatm extends Statement {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t WhileStatm");	
 	String testLabel = Code.getLocalLabel(),
 	    endLabel  = Code.getLocalLabel();
    
@@ -1377,7 +1342,6 @@ class LhsVariable extends SyntaxUnit {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tLhsVariable");
 	var.check(curDecls);
 	type = var.type;
 	for (int i = 1;  i <= numStars;  ++i) {
@@ -1390,7 +1354,6 @@ class LhsVariable extends SyntaxUnit {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t LhsVariable");	
 	var.genAddressCode(curFunc);
 	for (int i = 1;  i <= numStars;  ++i)
 	    Code.genInstr("", "movl", "(%eax),%eax", "  *");
@@ -1426,7 +1389,6 @@ class ExprList extends SyntaxUnit {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tExprList");
 	//-- Must be changed in part 2:
 	Expression cur = firstExpr;
 	while(cur != null){
@@ -1437,7 +1399,6 @@ class ExprList extends SyntaxUnit {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t ExprList");	
 	//-- Must be changed in part 2:
     }
 
@@ -1448,7 +1409,6 @@ class ExprList extends SyntaxUnit {
 	    size++;
 	    cur = cur.nextExpr ;
 	}
-	System.out.println("Check: Datasize exprlist -- " + size);	
 	return size;
     }
     
@@ -1505,7 +1465,6 @@ class Expression extends SyntaxUnit {
 
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tExpression");
 	//-- Must be changed in part 2:
 	firstTerm.check(curDecls);
 	if( relOpr != null){
@@ -1523,7 +1482,6 @@ class Expression extends SyntaxUnit {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Expression");	
 	//-- Must be changed in part 2:
 	firstTerm.genCode(curFunc);
 	if(relOpr != null){
@@ -1567,7 +1525,6 @@ class Term extends SyntaxUnit {
     Type type = null;
     
     @Override void check(DeclList curDecls) {
-	System.out.println("Check:\tTerm");
 	//-- Must be changed in part 2:
 	for(int j = 0; j < factors.size ; j++){
 	    Factor cur = factors.get(j);
@@ -1579,7 +1536,6 @@ class Term extends SyntaxUnit {
     }
    
     @Override void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Term");	
 	//-- Must be changed in part 2:
 	for (int i = 0; i < factors.size(); i++) {
 	    Factor f = factors.get(i);
@@ -1599,7 +1555,6 @@ class Term extends SyntaxUnit {
 		}
 		i++;
 	    }
-	    
 	}
     }
    
@@ -1643,7 +1598,6 @@ class Factor extends SyntaxUnit {
     Type type = null;
    
     @Override void check(DeclList curDecls) {
-	System.out.println("Check:\tFactor");
 	//-- Must be changed in part 2:
 	for (int i = 0; i < prims.size(); i++) {
 	    Primary p = prims.get(i);
@@ -1652,13 +1606,13 @@ class Factor extends SyntaxUnit {
 		type = p.type;
 	    }
 	    if (i != prims.size()-1) {
-		opers.get(i).printTree();
+		Operator po = opers.get(i);
+		po.check(curDecls);
 	    }
 	}
     }
    
     @Override void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Factor");	
 	//-- Must be changed in part 2:
 	for (int i = 0; i < prims.size(); i++) {
 	    Primary p = prims.get(i);
@@ -1690,7 +1644,8 @@ class Factor extends SyntaxUnit {
 		p.printTree();
 	    }
 	    if (i != prims.size()-1) {
-		opers.get(i).printTree();
+		Operator po = opers.get(i);
+		po.printTree();
 	    }
 	}
     }
@@ -1708,12 +1663,11 @@ class Primary extends SyntaxUnit {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tPrimary");
 	//-- Must be changed in part 2:
 	o.check(curDecls);
 	if( po!= null){
 	    if( po.oprToken == starToken){
-		type = new PointerType(type);
+		type = new PointerType(o.type);
 	    }else{
 		type = Types.intType;
 	    }
@@ -1724,7 +1678,6 @@ class Primary extends SyntaxUnit {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Primary");	
 	//-- Must be changed in part 2:
 	o.genCode(curFunc);
     }
@@ -1790,7 +1743,7 @@ class OperatorList extends SyntaxUnit {
 	if (i > size) {
 	    throw new IndexOutOfBoundsException();
 	} else {
-	    while (count != i) {
+	    while (count != i && current != null) {
 		current = current.nextOpr;
 		count++;
 	    }
@@ -1805,15 +1758,11 @@ class OperatorList extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Operator");	
 	//probably needs to be changed in part 2
     }
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tOperator");
 	//probably needs to be changed in part 2
-	Operator cur = firstOpr;
-	System.out.println("cur == null ? : "+ cur==null );
     } 
 }
 
@@ -1865,20 +1814,11 @@ class FactorList extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t FactorList");	
 	//probably needs to be changed in part 2
-	/*
-	  Factor cur = first;
-	  while(cur != null){
-	  cur.genCode(curFunc);
-	  cur = cur.nextFac;
-	  }
-	*/
     }
     
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check:\tFactorList");
 	//probably needs to be changed in part 2
 	Factor cur = first;
 	while(cur != null){
@@ -1928,7 +1868,6 @@ class PrimaryList extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t PrimaryList");	
 	//probably needs to be changed in part 2
     }
     @Override
@@ -1944,7 +1883,6 @@ class PrimaryList extends SyntaxUnit {
 class RelOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t RelOpr");	
 	Code.genInstr("", "popl", "%ecx", "");
 	Code.genInstr("", "cmpl", "%eax,%ecx", "");
 	Code.genInstr("", "movl", "$0,%eax", "");
@@ -1994,7 +1932,6 @@ class RelOpr extends Operator {
 class TermOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t TermOpr");
 	Code.genInstr("","movl","%eax,%ecx","");
 	Code.genInstr("","popl","%eax","");
 	switch (oprToken) {
@@ -2034,7 +1971,6 @@ class TermOpr extends Operator {
 class FactorOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t FactorOpr");
 	Code.genInstr("","movl","%eax,%eax","");
 	Code.genInstr("","popl","%eax","");
 	switch (oprToken) {
@@ -2075,7 +2011,6 @@ class FactorOpr extends Operator {
 class PrefixOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t PrefixOpr");
     }
    
     static PrefixOpr parse() {
@@ -2139,7 +2074,6 @@ class FunctionCall extends Operand {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: functionCall");
 	//-- Must be changed in part 2:
 
 	FuncDecl func = (FuncDecl) curDecls.findDecl(funcName, this);
@@ -2152,14 +2086,17 @@ class FunctionCall extends Operand {
 	Expression cur = elist.firstExpr;
 	int i = 1;
 	while( cur!= null){
-	    if( (cur.type == Types.intType) ||
-		(cur.type == type) ){
-	    }else{
-		error("function-call type error");
-	    }
-	    Log.noteTypeCheck("Parameter #"+i+" in call on" +
+	    Log.noteTypeCheck("Parameter #"+i+" in call on " +
 			      funcName, cur.type,"actual",
 			      type,"formal", lineNum);
+
+	    Type t = func.funcParams.get(i);
+
+	    if(	(cur.type == Types.intType) ||
+	        (t.isSameType(cur.type)) ){
+	    }else{
+		error("function-call type mismatch error");
+	    }
 	    cur = cur.nextExpr;
 	    i++;
 	}
@@ -2171,7 +2108,6 @@ class FunctionCall extends Operand {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t FunctionCall");
 	//-- Must be changed in part 2:
 	if(elist == null){
 	    Code.genInstr("","call", funcName,"call "+funcName);
@@ -2229,14 +2165,12 @@ class CallStatm extends Statement {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: CallStatm");
 	//-- Must be changed in part 2:
 	fc.check(curDecls);
     }
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t CallStatm");
 	//-- Must be changed in part 2:
 	fc.genCode(curFunc);
     }
@@ -2266,7 +2200,6 @@ class Number extends Operand {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: Number\n");	
 	//-- Must be changed in part 2:
 	type = Types.intType;
 	if( nextOperand!= null){
@@ -2276,7 +2209,6 @@ class Number extends Operand {
        
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Number");	
 	Code.genInstr("", "movl", "$"+numVal+",%eax", ""+numVal);
     }
    
@@ -2306,7 +2238,6 @@ class Variable extends Operand {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: Variable");
 
 	Declaration d = curDecls.findDecl(varName,this);
 	d.checkWhetherVariable(this);
@@ -2331,12 +2262,10 @@ class Variable extends Operand {
 	    }
 	    type = d.type.getElemType();
 	}
-	System.out.println("Type Variable : "+ d.type);
     }
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t VARIABLE");	
 	//-- Must be changed in part 2:
 
 	if(index != null){
@@ -2403,7 +2332,6 @@ class Address extends Operand {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: Address");
 	
 	var.check(curDecls);
 	type = new PointerType(var.type);
@@ -2411,7 +2339,6 @@ class Address extends Operand {
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t Address");	
 	var.genAddressCode(curFunc);
     }
    
@@ -2440,14 +2367,12 @@ class InnerExpr extends Operand {
    
     @Override
     void check(DeclList curDecls) {
-	System.out.println("Check: InnerExpr");
 	expr.check(curDecls);
 	type = expr.type;
     }
    
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t InnerExpr");	
 	expr.genCode(curFunc);
     }
    

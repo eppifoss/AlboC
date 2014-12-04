@@ -99,6 +99,7 @@ class Program extends SyntaxUnit {
  
     static Program parse() {
 
+
 	Log.enterParser("<program>");
 	Program p = new Program();
 	p.progDecls = GlobalDeclList.parse();
@@ -183,13 +184,14 @@ abstract class DeclList extends SyntaxUnit {
  * (This class is not mentioned in the syntax diagrams.)
  */
 class GlobalDeclList extends DeclList {
- 
+
     @Override
     void genCode(FuncDecl curFunc) {
 	//-- Must be changed in part 2:
     }
  
     static GlobalDeclList parse() {
+
 
 	GlobalDeclList gdl = new GlobalDeclList();
 	while (Scanner.curToken == intToken) {
@@ -215,11 +217,12 @@ class LocalDeclList extends DeclList {
  
     static LocalDeclList parse() {
 
+
 	LocalDeclList ldl = new LocalDeclList();
  
 	while (Scanner.curToken == intToken) {
 	    DeclType ts = DeclType.parse();
-	    ldl.addDecl(Declaration.parse(ts));
+	    ldl.addDecl(LocalVarDecl.parse(ts));
 	}
 	return ldl;
     }
@@ -237,6 +240,7 @@ class ParamDeclList extends DeclList {
     }
  
     static ParamDeclList parse() {
+
 
 	
 	
@@ -289,6 +293,7 @@ class DeclType extends SyntaxUnit {
  
     static DeclType parse() {
 
+
 	Log.enterParser("<type>");
  
 	DeclType dt = new DeclType();
@@ -329,6 +334,7 @@ abstract class Declaration extends SyntaxUnit {
     abstract int declSize();
  
     static Declaration parse(DeclType dt) {
+
 	Declaration d = null;	
 	if (Scanner.curToken==nameToken && Scanner.nextToken==leftParToken) {
 	    d = FuncDecl.parse(dt);
@@ -401,7 +407,7 @@ abstract class VarDecl extends Declaration {
         Log.wTree(" " + name);
         if (isArray) {
             Log.wTree("[");
-            Log.wTree(""+ Integer.toString(numElems));
+            Log.wTree(""+Integer.toString(numElems));
             Log.wTree("]");
         }
         Log.wTreeLn(";");
@@ -440,6 +446,7 @@ class GlobalVarDecl extends VarDecl {
     }
  
     static GlobalVarDecl parse(DeclType dt) {
+
 	Log.enterParser("<var decl>");
         GlobalVarDecl gvd = new GlobalVarDecl(Scanner.curName);
         gvd.typeSpec = dt;
@@ -449,7 +456,7 @@ class GlobalVarDecl extends VarDecl {
 	if(Scanner.curToken == leftBracketToken){
 	    Scanner.skip(leftBracketToken);
 	    gvd.isArray = true;
-	    gvd.numElems = Scanner.nextNum;
+	    gvd.numElems = Scanner.curNum;
 	    Scanner.skip(numberToken);
 	    Scanner.skip(rightBracketToken);
 	}
@@ -475,6 +482,7 @@ class LocalVarDecl extends VarDecl {
     }
  
     static LocalVarDecl parse(DeclType dt) {
+
 	Log.enterParser("<var decl>");
         LocalVarDecl lvd = new LocalVarDecl(Scanner.curName);
         lvd.typeSpec = dt;
@@ -483,7 +491,7 @@ class LocalVarDecl extends VarDecl {
 	if(Scanner.curToken == leftBracketToken){
 	    Scanner.skip(leftBracketToken);
 	    lvd.isArray = true;
-	    lvd.numElems = Scanner.nextNum;
+	    lvd.numElems = Scanner.curNum;
 	    Scanner.skip(numberToken);
 	    Scanner.skip(rightBracketToken);
 	}
@@ -511,12 +519,11 @@ class ParamDecl extends VarDecl {
  
     static ParamDecl parse(DeclType dt) {
 
+
 	Log.enterParser("<param decl>");
         ParamDecl pd = new ParamDecl(Scanner.curName);
 	pd.typeSpec = dt;
-
 	Scanner.skip(nameToken);
-
 	Log.leaveParser("</param decl>");
 	return pd;
     }
@@ -573,6 +580,7 @@ class FuncDecl extends Declaration {
  
     static FuncDecl parse(DeclType ts) {
 
+
 	Log.enterParser("<func decl>");         
 	FuncDecl fd = new FuncDecl(Scanner.curName);
         fd.typeSpec = ts;
@@ -626,6 +634,7 @@ class StatmList extends SyntaxUnit {
  
     static StatmList parse() {
 
+
 	Log.enterParser("<statm list>");
 	StatmList sl = new StatmList();
 	Statement lastStatm = null;
@@ -662,6 +671,7 @@ abstract class Statement extends SyntaxUnit {
     Statement nextStatm = null;
  
     static Statement parse() {
+
 
 	Log.enterParser("<statement>");
 
@@ -712,6 +722,7 @@ class EmptyStatm extends Statement {
  
     static EmptyStatm parse() {
 
+
         Log.enterParser("<empty statm>");
         Scanner.skip(semicolonToken);
         Log.leaveParser("</empty statm>");
@@ -745,6 +756,7 @@ class ForStatm extends Statement {
     }
  
     static ForStatm parse() {
+
 
 	Log.enterParser("<for-statm>");
  
@@ -794,6 +806,7 @@ class ForControl extends SyntaxUnit {
  
     static ForControl parse() {
 
+
 	Log.enterParser("<for-control>");
  
 	ForControl fc = new ForControl();
@@ -834,6 +847,7 @@ class FuncBody extends SyntaxUnit {
     }
  
     static FuncBody parse() {
+
 
 	Log.enterParser("<func-body>");
  
@@ -878,6 +892,7 @@ class Assignment extends SyntaxUnit {
  
     static Assignment parse() {
 
+
 	Log.enterParser("<assignment>");
  
 	Assignment a = new Assignment();
@@ -918,6 +933,7 @@ class IfStatm extends Statement {
     }
    
     static IfStatm parse() {
+
 
         Log.enterParser("<if-statm>");
    
@@ -976,6 +992,7 @@ class ElseStatm extends Statement {
    
     static ElseStatm parse() {
 
+
         Log.enterParser("<else-part>");
    
         ElseStatm es = new ElseStatm();
@@ -1017,6 +1034,7 @@ class AssignStatm extends Statement {
    
     static AssignStatm parse() {
 
+
         Log.enterParser("<assign-statm>");
         AssignStatm as = new AssignStatm();
         as.a = Assignment.parse();
@@ -1051,6 +1069,7 @@ class ReturnStatm extends Statement {
     }
    
     static ReturnStatm parse() {
+
 
   
         Log.enterParser("<return-statm>");
@@ -1112,6 +1131,7 @@ class WhileStatm extends Statement {
    
     static WhileStatm parse() {
 
+
 	Log.enterParser("<while-statm>");
    
 	WhileStatm ws = new WhileStatm();
@@ -1170,6 +1190,7 @@ class LhsVariable extends SyntaxUnit {
    
     static LhsVariable parse() {
 
+
 	Log.enterParser("<lhs-variable>");
    
 	LhsVariable lhs = new LhsVariable();
@@ -1207,6 +1228,7 @@ class ExprList extends SyntaxUnit {
     }
    
     static ExprList parse() {
+
 
 	Expression lastExpr = null;
 
@@ -1278,6 +1300,7 @@ class Expression extends SyntaxUnit {
     static Expression parse() {
 
 
+
 	Log.enterParser("<expression>");
 
 	Expression e = new Expression();
@@ -1320,6 +1343,7 @@ class Term extends SyntaxUnit {
     }
    
     static Term parse() {
+
 
         Log.enterParser("<term>");
         Term t = new Term();
@@ -1364,6 +1388,7 @@ class Factor extends SyntaxUnit {
    
     static Factor parse() {
 
+
         Log.enterParser("<factor>");
         Factor f = new Factor();
         f.prims.add(Primary.parse());
@@ -1405,6 +1430,7 @@ class Primary extends SyntaxUnit {
     }
    
     static Primary parse() {
+
 
         Log.enterParser("<primary>");
         Primary p = new Primary();
@@ -1615,6 +1641,7 @@ class RelOpr extends Operator {
    
     static RelOpr parse() {
 
+
 	Log.enterParser("<rel opr>");
    
 	RelOpr ro = new RelOpr();
@@ -1651,6 +1678,7 @@ class TermOpr extends Operator {
    
     static TermOpr parse() {
 
+
 	Log.enterParser("<term opr>");
    
 	TermOpr to = new TermOpr();
@@ -1683,6 +1711,7 @@ class FactorOpr extends Operator {
     }
    
     static FactorOpr parse() {
+
 
 	Log.enterParser("<factor opr>");
    
@@ -1717,6 +1746,7 @@ class PrefixOpr extends Operator {
    
     static PrefixOpr parse() {
 
+
 	Log.enterParser("<prefix opr>");
    
 	PrefixOpr po = new PrefixOpr();
@@ -1746,6 +1776,7 @@ abstract class Operand extends SyntaxUnit {
     Type type;
    
     static Operand parse() {
+
 
 	Log.enterParser("<operand>");
 
@@ -1789,6 +1820,7 @@ class FunctionCall extends Operand {
     }
    
     static FunctionCall parse() {
+
 
         Log.enterParser("<function call>");
 	//-- Must be changed in part 1:
@@ -1835,6 +1867,7 @@ class CallStatm extends Statement {
    
     static CallStatm parse() {
 
+
         Log.enterParser("<call-statm>");
         CallStatm cs = new CallStatm();
         cs.fc = FunctionCall.parse();
@@ -1868,6 +1901,7 @@ class Number extends Operand {
     }
    
     static Number parse() {
+
 
 	Log.enterParser("<number>");
         Number n = new Number();
@@ -1944,6 +1978,7 @@ class Variable extends Operand {
    
     static Variable parse() {
 
+
            
 	Log.enterParser("<variable>");
         Variable v = new Variable();
@@ -1990,6 +2025,7 @@ class Address extends Operand {
    
     static Address parse() {
 
+
 	Log.enterParser("<address>");
    
 	Address a = new Address();
@@ -2027,6 +2063,7 @@ class InnerExpr extends Operand {
    
     static InnerExpr parse() {
 
+
 	Log.enterParser("<inner expr>");
    
 	InnerExpr ie = new InnerExpr();
@@ -2045,3 +2082,4 @@ class InnerExpr extends Operand {
         Log.wTree(")");
     }
 }
+

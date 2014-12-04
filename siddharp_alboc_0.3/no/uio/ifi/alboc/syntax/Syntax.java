@@ -286,9 +286,6 @@ class LocalDeclList extends DeclList {
 	System.out.println("Code:\tLDL");
 	//-- Must be changed in part 2:
 	Declaration cur = firstDecl;
-	if(! (firstDecl instanceof FuncDecl)){
-	    Code.genInstr("",".data","","");
-	}
 	int s= 0;
 	while( cur != null){
 	    s = s - cur.declSize();
@@ -695,11 +692,11 @@ class FuncDecl extends Declaration {
 	if(funcParams != null){
 	    funcParams.genCode(this);
 	}
-	
 	fb.genCode(this);
 	System.out.println("OK");
 	Code.genInstr(exitLabel,"","","");
 	Code.genInstr("","popl","%ebp","");
+	Code.genInstr("","leave","","");
 	Code.genInstr("", "ret","","end "+assemblerName);
     }
  
@@ -1126,7 +1123,7 @@ class IfStatm extends Statement {
 	String testLabel = Code.getLocalLabel();
 	String endLabel = Code.getLocalLabel();
 
-	Code.genInstr(testLabel,"","","Start If-statement");
+	Code.genInstr("","","","Start If-statement");
 	test.genCode(curFunc);
 	Code.genInstr("", "cmpl","$0,%eax","");
 
@@ -1707,7 +1704,7 @@ class Primary extends SyntaxUnit {
 	    }
 	}else{
 	    type = o.type;
-	System.out.println("Operand type = "+ o.type);	    	
+	    System.out.println("Operand type = "+ o.type);	    	
 	}
     }
    
@@ -2140,6 +2137,31 @@ class FunctionCall extends Operand {
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t FunctionCall");
 	//-- Must be changed in part 2:
+	if(elist == null){
+	    Code.genInstr("","call", funcName,"call "+funcName);
+	    return ;
+	}
+	Expression[] e = new Expression[elist.dataSize()];
+	Expression cur = elist.firstExpr;
+	int i = 0;
+	while( cur!= null){
+	    e[i++] =  cur;
+	    cur = cur.nextExpr;
+	}
+
+	for(int k = i-1; k >= 0 ; k --){
+	    e[k].genCode(curFunc);
+	    Code.genInstr("","pushl","%eax","Push Parameter #"+
+			  k+1);
+	}
+
+	Code.genInstr("","call", funcName,"call "+funcName);
+
+	for(Expression ex = elist.firstExpr; ex != null;
+	    ex = ex.nextExpr){
+	    Code.genInstr("","popl","%ecx","Remove parameter");
+	}	
+	
     }
    
     static FunctionCall parse() {
@@ -2286,6 +2308,16 @@ class Variable extends Operand {
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t VARIABLE");	
 	//-- Must be changed in part 2:
+
+	if(index != null){
+	    index.genCode(curFunc);
+	    Code.genInstr("","leal",declRef.assemblerName+",%edx"
+			  , varName+"[index]");
+	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
+	}else{
+	    Code.genInstr("","movl",declRef.assemblerName+",%eax"
+			  , varName);
+	}
     }
    
     void genAddressCode(FuncDecl curFunc) {
@@ -2354,12 +2386,10 @@ class Address extends Operand {
     }
    
     static Address parse() {
-
 	Log.enterParser("<address>");
 	Address a = new Address();
 	Scanner.skip(ampToken);
 	a.var = Variable.parse();
-   
 	Log.leaveParser("</address>");
 	return a;
     }
@@ -2381,7 +2411,6 @@ class InnerExpr extends Operand {
     @Override
     void check(DeclList curDecls) {
 	System.out.println("Check: InnerExpr");
-	
 	expr.check(curDecls);
 	type = expr.type;
     }

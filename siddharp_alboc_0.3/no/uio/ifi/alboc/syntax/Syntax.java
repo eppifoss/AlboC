@@ -476,12 +476,16 @@ abstract class VarDecl extends Declaration {
 	//-- Must be changed in part 2:
 	visible = true;
 	typeSpec.check(curDecls);
-	type = typeSpec.type;
+
 	if(isArray == true ){
 	    if(numElems < 0){
 		error(name+ " cannot have negative elements!");
 	    }
+	    type = new ArrayType(typeSpec.type,numElems);
+	}else{
+	    type = typeSpec.type;
 	}
+	
     }
  
     @Override
@@ -2319,6 +2323,7 @@ class Variable extends Operand {
 	    } else {
 		error("Only integers may be used as index.");
 	    }
+	    
 	    if (d.type.mayBeIndexed()) {
 		// OK
 	    } else {
@@ -2326,7 +2331,7 @@ class Variable extends Operand {
 	    }
 	    type = d.type.getElemType();
 	}
-	System.out.println("Type Variable : "+ type);
+	System.out.println("Type Variable : "+ d.type);
     }
    
     @Override

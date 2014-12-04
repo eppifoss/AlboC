@@ -529,9 +529,9 @@ class GlobalVarDecl extends VarDecl {
 	//-- Must be changed in part 2:
 	Code.genInstr("",".globl", assemblerName,"");
 	if(isArray){
-	    Code.genInstr(assemblerName,".fill",declSize()+"","");
+	    Code.genInstr(assemblerName,".fill",declSize()+",4,0","");
 	}else{
-	    Code.genInstr(assemblerName,".fill","4","");
+	    Code.genInstr(assemblerName,".fill","1,4,0","");
 	}
     }
  
@@ -567,11 +567,6 @@ class LocalVarDecl extends VarDecl {
     void genCode(FuncDecl curFunc) {
 	System.out.println("Code:\tLVD");
 	//-- Must be changed in part 2:
-	if(isArray){
-	    Code.genInstr(assemblerName,".fill",declSize()+"","");
-	}else{
-	    Code.genInstr(assemblerName,".fill","4","");
-	}
     }
  
     static LocalVarDecl parse(DeclType dt) {
@@ -685,9 +680,10 @@ class FuncDecl extends Declaration {
 	//-- Must be changed in part 2:
 
 	Code.genInstr("",".globl",assemblerName,"");
-	Code.genInstr(assemblerName,"pushl","%ebp",
-		      "int "+name+" ;");
-	Code.genInstr("","movl","%esp,%ebp","");
+
+	Code.genInstr(assemblerName,"enter","$"+fb.ldl.dataSize()+",$0",
+		      "Start function "+name+" ;");
+
 	
 	if(funcParams != null){
 	    funcParams.genCode(this);
@@ -695,7 +691,6 @@ class FuncDecl extends Declaration {
 	fb.genCode(this);
 	System.out.println("OK");
 	Code.genInstr(exitLabel,"","","");
-	Code.genInstr("","popl","%ebp","");
 	Code.genInstr("","leave","","");
 	Code.genInstr("", "ret","","end "+assemblerName);
     }
@@ -752,21 +747,8 @@ class FuncBody extends SyntaxUnit {
     @Override
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\tFuncBody");
-	/*
-	  int size = ldl.dataSize();
-	  if(size > 0){
-	  Code.genInstr("","subl","$"+size+",%esp","Allocate"+
-	  size +" bytes");
-	  }
-	*/
     	ldl.genCode(curFunc);
 	sl.genCode(curFunc);
-	/*
-	  if(size > 0){
-	  Code.genInstr("","addl","$"+size+",%esp","Free "+
-	  size+" bytes");
-	  }
-	*/
     }
  
     static FuncBody parse() {
@@ -1068,8 +1050,11 @@ class Assignment extends SyntaxUnit {
 	    lhs.var.index.genCode(curFunc);
 	    Code.genInstr("","pushl","%eax","");
 	}
-	e.genCode(curFunc);
 	lhs.genCode(curFunc);
+	Code.genInstr("","pushl","%eax","");
+	e.genCode(curFunc);
+	Code.genInstr("","popl","%edx","");
+	Code.genInstr("","movl","%eax,(%edx)"," = ");
     }
  
     static Assignment parse() {
@@ -1122,12 +1107,13 @@ class IfStatm extends Statement {
 	//-- Must be changed in part 2:
 	String testLabel = Code.getLocalLabel();
 	String endLabel = Code.getLocalLabel();
-
 	Code.genInstr("","","","Start If-statement");
 	test.genCode(curFunc);
 	Code.genInstr("", "cmpl","$0,%eax","");
 
-	if(elsepart != null){
+	System.out.println("ELSE == " +elsepart );
+
+	if(elsepart == null){
 	    Code.genInstr("","je",testLabel,"");
 	    body.genCode(curFunc);
 	    Code.genInstr(testLabel,"","","");
@@ -1135,9 +1121,9 @@ class IfStatm extends Statement {
 	    Code.genInstr("","je",endLabel,"");
 	    body.genCode(curFunc);
 	    Code.genInstr("","jmp",testLabel,"");
-	    Code.genInstr(endLabel,"","","");
+	    Code.genInstr(endLabel,"","","Else-Part");
 	    elsepart.genCode(curFunc);
-	    Code.genInstr(testLabel,"","","");
+	    Code.genInstr(testLabel,"","","End If-Statement");
 	}
 	
     }
@@ -1537,9 +1523,9 @@ class Expression extends SyntaxUnit {
 	//-- Must be changed in part 2:
 	firstTerm.genCode(curFunc);
 	if(relOpr != null){
-	    //	    Code.genInstr("","pushl","%eax","");
+	    Code.genInstr("","pushl","%eax","");
+	    secondTerm.genCode(curFunc);	    
 	    relOpr.genCode(curFunc);
-	    secondTerm.genCode(curFunc);
 	}
 	
     }
@@ -1591,7 +1577,26 @@ class Term extends SyntaxUnit {
     @Override void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t Term");	
 	//-- Must be changed in part 2:
-	factors.genCode(curFunc);
+	for (int i = 0; i < factors.size(); i++) {
+	    Factor f = factors.get(i);
+
+	    if(f != null){
+		f.genCode(curFunc);
+	    }
+	    if (i != factors.size()-1) {
+		f = factors.get(i+1);
+		if(f != null){
+		    Code.genInstr("","pushl","%eax","");
+		    f.genCode(curFunc);
+		}
+		Operator op = opers.get(i);
+		if(op!=null){
+		    op.genCode(curFunc);
+		}
+		i++;
+	    }
+	    
+	}
     }
    
     static Term parse() {
@@ -1642,6 +1647,9 @@ class Factor extends SyntaxUnit {
 		p.check(curDecls);
 		type = p.type;
 	    }
+	    if (i != prims.size()-1) {
+		opers.get(i).printTree();
+	    }
 	}
     }
    
@@ -1650,10 +1658,13 @@ class Factor extends SyntaxUnit {
 	//-- Must be changed in part 2:
 	for (int i = 0; i < prims.size(); i++) {
 	    Primary p = prims.get(i);
-	    if(p!=null){
+	    if(p!= null){
 		p.genCode(curFunc);
 	    }
-	}
+	    if (i != prims.size()-1) {
+		opers.get(i).genCode(curFunc);
+	    }
+	}	
     }
    
     static Factor parse() {
@@ -1704,7 +1715,6 @@ class Primary extends SyntaxUnit {
 	    }
 	}else{
 	    type = o.type;
-	    System.out.println("Operand type = "+ o.type);	    	
 	}
     }
    
@@ -1853,11 +1863,13 @@ class FactorList extends SyntaxUnit {
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t FactorList");	
 	//probably needs to be changed in part 2
-	Factor cur = first;
-	while(cur != null){
-	    cur.genCode(curFunc);
-	    cur = cur.nextFac;
-	}	
+	/*
+	  Factor cur = first;
+	  while(cur != null){
+	  cur.genCode(curFunc);
+	  cur = cur.nextFac;
+	  }
+	*/
     }
     
     @Override
@@ -1978,7 +1990,17 @@ class RelOpr extends Operator {
 class TermOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	System.out.println("CODE:\t TermOpr");	
+	System.out.println("CODE:\t TermOpr");
+	Code.genInstr("","movl","%eax,%ecx","");
+	Code.genInstr("","popl","%eax","");
+	switch (oprToken) {
+	case subtractToken:
+	    Code.genInstr("","subl","%ecx,%eax","Compute -");
+	    break;
+	case addToken:
+	    Code.genInstr("","addl","%ecx,%eax","Compute +");
+	    break;
+	}
     }
    
     static TermOpr parse() {
@@ -2009,11 +2031,21 @@ class FactorOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t FactorOpr");
+	Code.genInstr("","movl","%eax,%eax","");
+	Code.genInstr("","popl","%eax","");
+	switch (oprToken) {
+	case starToken:
+	    Code.genInstr("","imull","%ecx,%eax","Multiply");
+	    break;
+	case divideToken:
+	    Code.genInstr("","cdq","","");
+	    Code.genInstr("","idivl","%ecx","Divide");
+	    break;
+	}
     }
    
     static FactorOpr parse() {
 	Log.enterParser("<factor opr>");
-   
 	FactorOpr fo = new FactorOpr();
 	fo.oprToken = Scanner.curToken;
 	Scanner.readNext();
@@ -2148,20 +2180,13 @@ class FunctionCall extends Operand {
 	    e[i++] =  cur;
 	    cur = cur.nextExpr;
 	}
-
 	for(int k = i-1; k >= 0 ; k --){
 	    e[k].genCode(curFunc);
 	    Code.genInstr("","pushl","%eax","Push Parameter #"+
-			  k+1);
+			  (k+1));
 	}
-
 	Code.genInstr("","call", funcName,"call "+funcName);
-
-	for(Expression ex = elist.firstExpr; ex != null;
-	    ex = ex.nextExpr){
-	    Code.genInstr("","popl","%ecx","Remove parameter");
-	}	
-	
+	Code.genInstr("","addl","$8,%esp","Remove parameter");
     }
    
     static FunctionCall parse() {

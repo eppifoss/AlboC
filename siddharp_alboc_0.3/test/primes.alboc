@@ -19,7 +19,7 @@ int find_primes ()
    }
 }
 
-int mod (int a, int b)
+int mod(int a, int b)
 {
    /* Computes a%b. */
 

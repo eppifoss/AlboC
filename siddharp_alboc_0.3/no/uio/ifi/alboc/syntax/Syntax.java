@@ -26,28 +26,29 @@ public class Syntax {
  
     public static void init() {
 	//-- Must be changed in part 1+2:
-	
 	library = new GlobalDeclList();
-
-	addFunction("putint" , 1);
-	addFunction("putchar" , 1);
-	addFunction("getint" , 0);
-	addFunction("getchar" , 0);
-	addFunction("exit" , 1);
+	addFunction("putint" , 1 );
+	addFunction("putchar" , 1 );
+	addFunction("getint" , 0 );
+	addFunction("getchar" , 0 );
+	addFunction("exit" , 1 );
 	
 	Scanner.readNext();
        	Scanner.readNext();
     }
 
-    public static void addFunction(String name, int arg){
+    public static void addFunction(String name,int arg){
 	FuncDecl func = new FuncDecl(name);
 	ParamDeclList params = new ParamDeclList();
 	int i = 0;
 	while( i < arg){
 	    ParamDecl pd = new ParamDecl("p"+i);
+	    pd.type = Types.intType;
+	    params.addDecl(pd);
 	    i++;
 	}
 	func.funcParams = params;
+	func.type = Types.intType;
 	library.addDecl(func);
     }
  
@@ -199,7 +200,17 @@ abstract class DeclList extends SyntaxUnit {
 	}
 	return res;
     }
- 
+
+    int size() {
+	Declaration dx = firstDecl;
+	int res = 0;
+	while (dx != null) {
+	    res ++;
+	    dx = dx.nextDecl;
+	}
+	return res;
+    }
+
     Declaration findDecl(String name, SyntaxUnit use) {
 	//-- Must be changed in part 2:
 	Declaration cur = firstDecl;
@@ -644,20 +655,22 @@ class FuncDecl extends Declaration {
     void check(DeclList curDecls) {
 	System.out.println("Check:\tFuncDecl");
 	//-- Must be changed in part 2:
-	if(funcParams != null){
-	    funcParams.check(curDecls);
-	}
 	visible = true;
 	typeSpec.check(curDecls);
 	type = typeSpec.type;
 	System.out.println("'\n'--FuncParams Check _OK_");
-	fb.check(funcParams);
+	if(funcParams != null){
+	    funcParams.check(curDecls);
+	    fb.check(funcParams);
+	}else{
+	    fb.check(curDecls);
+	}
     }
 
     @Override
     void checkWhetherFunction(int nParamsUsed, SyntaxUnit use) {
 	//-- Must be changed in part 2:
-	int size = funcParams.dataSize();
+	int size = funcParams.size();
 	if( size != nParamsUsed){
 	    error("illegal number of arguments (Expected "+ size+ " but found "+ nParamsUsed+" )");
 	}
@@ -743,19 +756,19 @@ class FuncBody extends SyntaxUnit {
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\tFuncBody");
 	/*
-	int size = ldl.dataSize();
-	if(size > 0){
-	    Code.genInstr("","subl","$"+size+",%esp","Allocate"+
-			  size +" bytes");
-	}
+	  int size = ldl.dataSize();
+	  if(size > 0){
+	  Code.genInstr("","subl","$"+size+",%esp","Allocate"+
+	  size +" bytes");
+	  }
 	*/
     	ldl.genCode(curFunc);
 	sl.genCode(curFunc);
 	/*
-	if(size > 0){
-	    Code.genInstr("","addl","$"+size+",%esp","Free "+
-			  size+" bytes");
-	}
+	  if(size > 0){
+	  Code.genInstr("","addl","$"+size+",%esp","Free "+
+	  size+" bytes");
+	  }
 	*/
     }
  
@@ -1041,7 +1054,9 @@ class Assignment extends SyntaxUnit {
 	e.check(curDecls);
 	Log.noteTypeCheck(" v = e",lhs.type,"v",e.type,"e",
 			  lineNum);
-	if( (lhs.type == e.type) || (e.type == Types.intType)){
+	if((e.type instanceof ValueType) ||
+	   (lhs.type == e.type) ||
+	   (e.type == Types.intType)){
 	    //OK
 	}else{
 	    error("Assignment must be of int or of the same type");
@@ -1446,6 +1461,7 @@ class ExprList extends SyntaxUnit {
 	    size++;
 	    cur = cur.nextExpr ;
 	}
+	System.out.println("Check: Datasize exprlist -- " + size);	
 	return size;
     }
     
@@ -1515,6 +1531,7 @@ class Expression extends SyntaxUnit {
 	}else{
 	    type = firstTerm.type;
 	}
+
     }
    
     @Override
@@ -1567,8 +1584,10 @@ class Term extends SyntaxUnit {
 	//-- Must be changed in part 2:
 	for(int j = 0; j < factors.size ; j++){
 	    Factor cur = factors.get(j);
-	    cur.check(curDecls);
-	    type = cur.type ;
+	    if(cur!= null){
+		cur.check(curDecls);
+		type = cur.type ;
+	    }
 	}	
     }
    
@@ -1593,9 +1612,15 @@ class Term extends SyntaxUnit {
     @Override
     void printTree() {
 	for (int i = 0; i < factors.size(); i++) {
-	    factors.get(i).printTree();
+	    Factor f = factors.get(i);
+	    if(f != null){
+		f.printTree();
+	    }
 	    if (i != factors.size()-1) {
-		opers.get(i).printTree();
+		Operator op = opers.get(i);
+		if(op!=null){
+		    op.printTree();
+		}		
 	    }
 	}
     }
@@ -1616,8 +1641,10 @@ class Factor extends SyntaxUnit {
 	//-- Must be changed in part 2:
 	for (int i = 0; i < prims.size(); i++) {
 	    Primary p = prims.get(i);
-	    p.check(curDecls);
-	    type = p.type;
+	    if(p != null){
+		p.check(curDecls);
+		type = p.type;
+	    }
 	}
     }
    
@@ -1626,7 +1653,9 @@ class Factor extends SyntaxUnit {
 	//-- Must be changed in part 2:
 	for (int i = 0; i < prims.size(); i++) {
 	    Primary p = prims.get(i);
-	    p.genCode(curFunc);
+	    if(p!=null){
+		p.genCode(curFunc);
+	    }
 	}
     }
    
@@ -1644,7 +1673,10 @@ class Factor extends SyntaxUnit {
    
     @Override void printTree() {
 	for (int i = 0; i < prims.size(); i++) {
-	    prims.get(i).printTree();
+	    Primary p = prims.get(i);
+	    if(p!= null){
+		p.printTree();
+	    }
 	    if (i != prims.size()-1) {
 		opers.get(i).printTree();
 	    }
@@ -1675,6 +1707,7 @@ class Primary extends SyntaxUnit {
 	    }
 	}else{
 	    type = o.type;
+	System.out.println("Operand type = "+ o.type);	    	
 	}
     }
    
@@ -1795,23 +1828,30 @@ class FactorList extends SyntaxUnit {
     public Factor get(int i) {
 	int count = 0;
 	Factor current = first;
+
 	if (i > size) {
 	    throw new IndexOutOfBoundsException();
 	} else {
-	    while (count != i) {
+	    while (count != i && current != null) {
 		current = current.nextFac;
 		count++;
 	    }
 	    return current;
 	}
     }
+    
     public int size() { return size;}
 
  
     @Override
     void printTree() {
- 
+	Factor cur = first;
+	while(cur != null){
+	    cur.printTree();
+	    cur = cur.nextFac;
+	}	
     }
+    
     @Override
     void genCode(FuncDecl curFunc) {
 	System.out.println("CODE:\t FactorList");	
@@ -1822,6 +1862,7 @@ class FactorList extends SyntaxUnit {
 	    cur = cur.nextFac;
 	}	
     }
+    
     @Override
     void check(DeclList curDecls) {
 	System.out.println("Check:\tFactorList");
@@ -1833,6 +1874,7 @@ class FactorList extends SyntaxUnit {
 	}	
     } 
 }
+
 class PrimaryList extends SyntaxUnit {
     Primary first;
     Primary last;
@@ -2066,9 +2108,13 @@ class FunctionCall extends Operand {
     void check(DeclList curDecls) {
 	System.out.println("Check: functionCall");
 	//-- Must be changed in part 2:
+
 	FuncDecl func = (FuncDecl) curDecls.findDecl(funcName, this);
-	func.checkWhetherFunction(elist.dataSize(), this);
 	type = func.type;
+	
+	if(elist == null){ return ;}
+	func.checkWhetherFunction(elist.dataSize(), this);
+
 	elist.check(curDecls);
 	Expression cur = elist.firstExpr;
 	int i = 1;
@@ -2084,6 +2130,7 @@ class FunctionCall extends Operand {
 	    cur = cur.nextExpr;
 	    i++;
 	}
+
 	if(nextOperand != null){
 	    nextOperand.check(curDecls);
 	}

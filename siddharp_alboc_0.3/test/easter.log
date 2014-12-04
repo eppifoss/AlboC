@@ -1773,3 +1773,29 @@ Parser:           </func-body>
 Parser:         </func decl>
 Parser:       </program>
 Tree:     int mod(int x, int y) {
+Tree:       return x - (x / y * );
+Tree:     }
+Tree:     int easter(int y) {
+Tree:       int a;
+Tree:       int b;
+Tree:       int c;
+Tree:       int d;
+Tree:       int e;
+Tree:       int f;
+Tree:       int g;
+Tree:       int h;
+Tree:       int i;
+Tree:       int k;
+Tree:       int l;
+Tree:       int m;
+Tree:       int month;
+Tree:       int m_name[5];
+Tree:       int day;
+Tree:       int ix;
+Tree:       a = mod(y, 19);
+Tree:       b = y / 100;
+Tree:       c = mod(y, 100);
+Tree:       d = b / 4;
+Tree:       e = mod(b, 4);
+Tree:       f = (b + 8) / 25;
+Tree:       g = (b - 1 + ) / 3;

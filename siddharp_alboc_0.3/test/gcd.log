@@ -5,410 +5,417 @@
 Parser:       <program>
 Parser:         <type>
 Parser:         </type>
+Parser:         <var decl>
  5:  int LF; /* Line feed */
  6:  
  7:  
-Parser:       </var decl>
-Parser:       <type>
-Parser:       </type>
-Parser:       <type>
-Parser:       </type>
-Parser:     </param decl>
-Parser:       <type>
+Parser:         </var decl>
+Parser:         <type>
+Parser:         </type>
+Parser:         <func decl>
+Parser:           <type>
+Parser:           </type>
+Parser:           <param decl>
+Parser:           </param decl>
+Parser:           <type>
  8:  int gcd (int a, int b )
-Parser:       </type>
-Parser:     </param decl>
+Parser:           </type>
+Parser:           <param decl>
+Parser:           </param decl>
  9:  {  /* Computes the gcd of a and b. */
  10:  
-Parser:       <func-body>
-Parser:         <statm list>
-Parser:           <statement>
-Parser:             <while-statm>
-Parser:               <expression>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <variable>
-Parser:                         </variable>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:                 <rel opr>
-Parser:                 </rel opr>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <variable>
+Parser:           <func-body>
+Parser:             <statm list>
+Parser:               <statement>
+Parser:                 <while-statm>
+Parser:                   <expression>
+Parser:                     <term>
+Parser:                       <factor>
+Parser:                         <primary>
+Parser:                           <operand>
+Parser:                             <variable>
+Parser:                             </variable>
+Parser:                           </operand>
+Parser:                         </primary>
+Parser:                       </factor>
+Parser:                     </term>
+Parser:                     <rel opr>
+Parser:                     </rel opr>
+Parser:                     <term>
+Parser:                       <factor>
+Parser:                         <primary>
+Parser:                           <operand>
+Parser:                             <variable>
  11:     while (a != b ) {
-Parser:                         </variable>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:               </expression>
-Parser:               <statm list>
-Parser:                 <statement>
-Parser:                   <if-statm>
+Parser:                             </variable>
+Parser:                           </operand>
+Parser:                         </primary>
+Parser:                       </factor>
+Parser:                     </term>
+Parser:                   </expression>
+Parser:                   <statm list>
+Parser:                     <statement>
+Parser:                       <if-statm>
+Parser:                         <expression>
+Parser:                           <term>
+Parser:                             <factor>
+Parser:                               <primary>
+Parser:                                 <operand>
+Parser:                                   <variable>
+Parser:                                   </variable>
+Parser:                                 </operand>
+Parser:                               </primary>
+Parser:                             </factor>
+Parser:                           </term>
+Parser:                           <rel opr>
+Parser:                           </rel opr>
+Parser:                           <term>
+Parser:                             <factor>
+Parser:                               <primary>
+Parser:                                 <operand>
+Parser:                                   <variable>
+ 12:        if (a < b ) {
+Parser:                                   </variable>
+Parser:                                 </operand>
+Parser:                               </primary>
+Parser:                             </factor>
+Parser:                           </term>
+Parser:                         </expression>
+Parser:                         <statm list>
+Parser:                           <statement>
+Parser:                             <assign-statm>
+Parser:                               <assignment>
+Parser:                                 <lhs-variable>
+Parser:                                   <variable>
+Parser:                                   </variable>
+Parser:                                 </lhs-variable>
+Parser:                                 <expression>
+Parser:                                   <term>
+Parser:                                     <factor>
+Parser:                                       <primary>
+Parser:                                         <operand>
+Parser:                                           <variable>
+Parser:                                           </variable>
+Parser:                                         </operand>
+Parser:                                       </primary>
+Parser:                                     </factor>
+Parser:                                     <term opr>
+ 13:  	 b = b-a ;
+Parser:                                     </term opr>
+Parser:                                     <factor>
+Parser:                                       <primary>
+Parser:                                         <operand>
+Parser:                                           <variable>
+Parser:                                           </variable>
+Parser:                                         </operand>
+Parser:                                       </primary>
+Parser:                                     </factor>
+Parser:                                   </term>
+Parser:                                 </expression>
+Parser:                               </assignment>
+Parser:                             </assign-statm>
+Parser:                           </statement>
+Parser:                         </statm list>
+ 14:        } else {
+Parser:                         <else-part>
+Parser:                           <statm list>
+Parser:                             <statement>
+Parser:                               <assign-statm>
+Parser:                                 <assignment>
+Parser:                                   <lhs-variable>
+Parser:                                     <variable>
+Parser:                                     </variable>
+Parser:                                   </lhs-variable>
+Parser:                                   <expression>
+Parser:                                     <term>
+Parser:                                       <factor>
+Parser:                                         <primary>
+Parser:                                           <operand>
+Parser:                                             <variable>
+Parser:                                             </variable>
+Parser:                                           </operand>
+Parser:                                         </primary>
+Parser:                                       </factor>
+Parser:                                       <term opr>
+ 15:  	 a = a-b ;
+Parser:                                       </term opr>
+Parser:                                       <factor>
+Parser:                                         <primary>
+Parser:                                           <operand>
+Parser:                                             <variable>
+ 16:        }
+Parser:                                             </variable>
+Parser:                                           </operand>
+Parser:                                         </primary>
+Parser:                                       </factor>
+Parser:                                     </term>
+Parser:                                   </expression>
+Parser:                                 </assignment>
+ 17:     }
+Parser:                               </assign-statm>
+Parser:                             </statement>
+Parser:                           </statm list>
+Parser:                         </else-part>
+Parser:                       </if-statm>
+Parser:                     </statement>
+Parser:                   </statm list>
+Parser:                 </while-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <return-statm>
+ 18:     return a;
+Parser:                   <expression>
+Parser:                     <term>
+Parser:                       <factor>
+Parser:                         <primary>
+Parser:                           <operand>
+Parser:                             <variable>
+ 19:  }
+Parser:                             </variable>
+Parser:                           </operand>
+Parser:                         </primary>
+Parser:                       </factor>
+Parser:                     </term>
+Parser:                   </expression>
+ 20:  
+Parser:                 </return-statm>
+Parser:               </statement>
+Parser:             </statm list>
+Parser:           </func-body>
+Parser:         </func decl>
+Parser:         <type>
+Parser:         </type>
+Parser:         <func decl>
+ 21:  int main ()
+ 22:  {  
+Parser:           <func-body>
+Parser:             <type>
+Parser:             </type>
+Parser:             <var decl>
+Parser:             </var decl>
+Parser:             <type>
+ 23:     int v1;  int v2 ;
+Parser:             </type>
+Parser:             <var decl>
+ 24:  
+Parser:             </var decl>
+Parser:             <statm list>
+Parser:               <statement>
+Parser:                 <assign-statm>
+Parser:                   <assignment>
+Parser:                     <lhs-variable>
+Parser:                       <variable>
+Parser:                       </variable>
+Parser:                     </lhs-variable>
 Parser:                     <expression>
 Parser:                       <term>
 Parser:                         <factor>
 Parser:                           <primary>
 Parser:                             <operand>
-Parser:                               <variable>
-Parser:                               </variable>
-Parser:                             </operand>
-Parser:                           </primary>
-Parser:                         </factor>
-Parser:                       </term>
-Parser:                       <rel opr>
-Parser:                       </rel opr>
-Parser:                       <term>
-Parser:                         <factor>
-Parser:                           <primary>
-Parser:                             <operand>
-Parser:                               <variable>
- 12:        if (a < b ) {
-Parser:                               </variable>
+Parser:                               <number>
+Parser:                               </number>
 Parser:                             </operand>
 Parser:                           </primary>
 Parser:                         </factor>
 Parser:                       </term>
 Parser:                     </expression>
-Parser:                     <statm list>
-Parser:                       <statement>
-Parser:                         <assign-statm>
-Parser:                           <assignment>
-Parser:                             <lhs-variable>
-Parser:                               <variable>
-Parser:                               </variable>
-Parser:                             </lhs-variable>
-Parser:                             <expression>
-Parser:                               <term>
-Parser:                                 <factor>
-Parser:                                   <primary>
-Parser:                                     <operand>
-Parser:                                       <variable>
-Parser:                                       </variable>
-Parser:                                     </operand>
-Parser:                                   </primary>
-Parser:                                 </factor>
-Parser:                                 <term opr>
- 13:  	 b = b-a ;
-Parser:                                 </term opr>
-Parser:                                 <factor>
-Parser:                                   <primary>
-Parser:                                     <operand>
-Parser:                                       <variable>
-Parser:                                       </variable>
-Parser:                                     </operand>
-Parser:                                   </primary>
-Parser:                                 </factor>
-Parser:                               </term>
-Parser:                             </expression>
-Parser:                           </assignment>
-Parser:                         </assign-statm>
-Parser:                       </statement>
-Parser:                     </statm list>
- 14:        } else {
-Parser:                     <else-part>
-Parser:                       <statm list>
-Parser:                         <statement>
-Parser:                           <assign-statm>
-Parser:                             <assignment>
-Parser:                               <lhs-variable>
-Parser:                                 <variable>
-Parser:                                 </variable>
-Parser:                               </lhs-variable>
-Parser:                               <expression>
-Parser:                                 <term>
-Parser:                                   <factor>
-Parser:                                     <primary>
-Parser:                                       <operand>
-Parser:                                         <variable>
-Parser:                                         </variable>
-Parser:                                       </operand>
-Parser:                                     </primary>
-Parser:                                   </factor>
-Parser:                                   <term opr>
- 15:  	 a = a-b ;
-Parser:                                   </term opr>
-Parser:                                   <factor>
-Parser:                                     <primary>
-Parser:                                       <operand>
-Parser:                                         <variable>
- 16:        }
-Parser:                                         </variable>
-Parser:                                       </operand>
-Parser:                                     </primary>
-Parser:                                   </factor>
-Parser:                                 </term>
-Parser:                               </expression>
-Parser:                             </assignment>
- 17:     }
-Parser:                           </assign-statm>
-Parser:                         </statement>
-Parser:                       </statm list>
-Parser:                     </else-part>
-Parser:                   </if-statm>
-Parser:                 </statement>
-Parser:               </statm list>
-Parser:             </while-statm>
-Parser:           </statement>
-Parser:           <statement>
-Parser:             <return-statm>
- 18:     return a;
-Parser:               <expression>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <variable>
- 19:  }
-Parser:                         </variable>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:               </expression>
- 20:  
-Parser:             </return-statm>
-Parser:           </statement>
-Parser:         </statm list>
-Parser:       </func-body>
-Parser:     </func decl>
-Parser:       <type>
-Parser:       </type>
- 21:  int main ()
- 22:  {  
-Parser:       <func-body>
-Parser:         <type>
-Parser:         </type>
-Parser:       </var decl>
-Parser:       <type>
- 23:     int v1;  int v2 ;
-Parser:       </type>
- 24:  
-Parser:     </var decl>
-Parser:       <statm list>
-Parser:         <statement>
-Parser:           <assign-statm>
-Parser:             <assignment>
-Parser:               <lhs-variable>
-Parser:                 <variable>
-Parser:                 </variable>
-Parser:               </lhs-variable>
-Parser:               <expression>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <number>
-Parser:                         </number>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:               </expression>
-Parser:             </assignment>
+Parser:                   </assignment>
  25:     LF = 10 ; ; 
-Parser:           </assign-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <empty statm>
-Parser:           </empty statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <call-statm>
-Parser:             <function call>
-Parser:               <expr list>
-Parser:                 <expression>
-Parser:                   <term>
-Parser:                     <factor>
-Parser:                       <primary>
-Parser:                         <operand>
-Parser:                           <number>
-Parser:                           </number>
-Parser:                         </operand>
-Parser:                       </primary>
-Parser:                     </factor>
-Parser:                   </term>
-Parser:                 </expression>
-Parser:               </expr list>
-Parser:             </function call>
-Parser:           </call-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <call-statm>
-Parser:             <function call>
-Parser:               <expr list>
-Parser:                 <expression>
-Parser:                   <term>
-Parser:                     <factor>
-Parser:                       <primary>
-Parser:                         <operand>
-Parser:                           <number>
+Parser:                 </assign-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <empty statm>
+Parser:                 </empty statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <number>
+Parser:                                 </number>
+Parser:                               </operand>
+Parser:                             </primary>
+Parser:                           </factor>
+Parser:                         </term>
+Parser:                       </expression>
+Parser:                     </expr list>
+Parser:                   </function call>
+Parser:                 </call-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <number>
  26:     putchar('#') ;  putchar(' ');
-Parser:                           </number>
-Parser:                         </operand>
-Parser:                       </primary>
-Parser:                     </factor>
-Parser:                   </term>
-Parser:                 </expression>
-Parser:               </expr list>
-Parser:             </function call>
-Parser:           </call-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <assign-statm>
-Parser:             <assignment>
-Parser:               <lhs-variable>
-Parser:                 <variable>
-Parser:                 </variable>
-Parser:               </lhs-variable>
-Parser:               <expression>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <function call>
-Parser:                           <expr list>
-Parser:                           </expr list>
-Parser:                         </function call>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:               </expression>
-Parser:             </assignment>
-Parser:           </assign-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <assign-statm>
-Parser:             <assignment>
-Parser:               <lhs-variable>
-Parser:                 <variable>
-Parser:                 </variable>
-Parser:               </lhs-variable>
-Parser:               <expression>
-Parser:                 <term>
-Parser:                   <factor>
-Parser:                     <primary>
-Parser:                       <operand>
-Parser:                         <function call>
+Parser:                                 </number>
+Parser:                               </operand>
+Parser:                             </primary>
+Parser:                           </factor>
+Parser:                         </term>
+Parser:                       </expression>
+Parser:                     </expr list>
+Parser:                   </function call>
+Parser:                 </call-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <assign-statm>
+Parser:                   <assignment>
+Parser:                     <lhs-variable>
+Parser:                       <variable>
+Parser:                       </variable>
+Parser:                     </lhs-variable>
+Parser:                     <expression>
+Parser:                       <term>
+Parser:                         <factor>
+Parser:                           <primary>
+Parser:                             <operand>
+Parser:                               <function call>
+Parser:                                 <expr list>
+Parser:                                 </expr list>
+Parser:                               </function call>
+Parser:                             </operand>
+Parser:                           </primary>
+Parser:                         </factor>
+Parser:                       </term>
+Parser:                     </expression>
+Parser:                   </assignment>
+Parser:                 </assign-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <assign-statm>
+Parser:                   <assignment>
+Parser:                     <lhs-variable>
+Parser:                       <variable>
+Parser:                       </variable>
+Parser:                     </lhs-variable>
+Parser:                     <expression>
+Parser:                       <term>
+Parser:                         <factor>
+Parser:                           <primary>
+Parser:                             <operand>
+Parser:                               <function call>
  27:     v1 = getint();   v2 = getint();
-Parser:                           <expr list>
-Parser:                           </expr list>
-Parser:                         </function call>
-Parser:                       </operand>
-Parser:                     </primary>
-Parser:                   </factor>
-Parser:                 </term>
-Parser:               </expression>
-Parser:             </assignment>
-Parser:           </assign-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <call-statm>
-Parser:             <function call>
-Parser:               <expr list>
-Parser:                 <expression>
-Parser:                   <term>
-Parser:                     <factor>
-Parser:                       <primary>
-Parser:                         <operand>
-Parser:                           <function call>
-Parser:                             <expr list>
-Parser:                               <expression>
-Parser:                                 <term>
-Parser:                                   <factor>
-Parser:                                     <primary>
-Parser:                                       <operand>
-Parser:                                         <variable>
-Parser:                                         </variable>
-Parser:                                       </operand>
-Parser:                                     </primary>
-Parser:                                   </factor>
-Parser:                                 </term>
-Parser:                               </expression>
-Parser:                               <expression>
-Parser:                                 <term>
-Parser:                                   <factor>
-Parser:                                     <primary>
-Parser:                                       <operand>
-Parser:                                         <variable>
-Parser:                                         </variable>
-Parser:                                       </operand>
-Parser:                                     </primary>
-Parser:                                   </factor>
-Parser:                                 </term>
-Parser:                               </expression>
-Parser:                             </expr list>
-Parser:                           </function call>
-Parser:                         </operand>
-Parser:                       </primary>
-Parser:                     </factor>
-Parser:                   </term>
-Parser:                 </expression>
-Parser:               </expr list>
-Parser:             </function call>
-Parser:           </call-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <call-statm>
-Parser:             <function call>
-Parser:               <expr list>
-Parser:                 <expression>
-Parser:                   <term>
-Parser:                     <factor>
-Parser:                       <primary>
-Parser:                         <operand>
-Parser:                           <variable>
+Parser:                                 <expr list>
+Parser:                                 </expr list>
+Parser:                               </function call>
+Parser:                             </operand>
+Parser:                           </primary>
+Parser:                         </factor>
+Parser:                       </term>
+Parser:                     </expression>
+Parser:                   </assignment>
+Parser:                 </assign-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <function call>
+Parser:                                   <expr list>
+Parser:                                     <expression>
+Parser:                                       <term>
+Parser:                                         <factor>
+Parser:                                           <primary>
+Parser:                                             <operand>
+Parser:                                               <variable>
+Parser:                                               </variable>
+Parser:                                             </operand>
+Parser:                                           </primary>
+Parser:                                         </factor>
+Parser:                                       </term>
+Parser:                                     </expression>
+Parser:                                     <expression>
+Parser:                                       <term>
+Parser:                                         <factor>
+Parser:                                           <primary>
+Parser:                                             <operand>
+Parser:                                               <variable>
+Parser:                                               </variable>
+Parser:                                             </operand>
+Parser:                                           </primary>
+Parser:                                         </factor>
+Parser:                                       </term>
+Parser:                                     </expression>
+Parser:                                   </expr list>
+Parser:                                 </function call>
+Parser:                               </operand>
+Parser:                             </primary>
+Parser:                           </factor>
+Parser:                         </term>
+Parser:                       </expression>
+Parser:                     </expr list>
+Parser:                   </function call>
+Parser:                 </call-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <variable>
  28:     putint(gcd(v1,v2));  putchar(LF);
-Parser:                           </variable>
-Parser:                         </operand>
-Parser:                       </primary>
-Parser:                     </factor>
-Parser:                   </term>
-Parser:                 </expression>
-Parser:               </expr list>
-Parser:             </function call>
-Parser:           </call-statm>
-Parser:         </statement>
-Parser:         <statement>
-Parser:           <call-statm>
-Parser:             <function call>
-Parser:               <expr list>
-Parser:                 <expression>
-Parser:                   <term>
-Parser:                     <factor>
-Parser:                       <primary>
-Parser:                         <operand>
-Parser:                           <number>
+Parser:                                 </variable>
+Parser:                               </operand>
+Parser:                             </primary>
+Parser:                           </factor>
+Parser:                         </term>
+Parser:                       </expression>
+Parser:                     </expr list>
+Parser:                   </function call>
+Parser:                 </call-statm>
+Parser:               </statement>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <number>
  29:     exit(0);
-Parser:                           </number>
-Parser:                         </operand>
-Parser:                       </primary>
-Parser:                     </factor>
-Parser:                   </term>
-Parser:                 </expression>
-Parser:               </expr list>
+Parser:                                 </number>
+Parser:                               </operand>
+Parser:                             </primary>
+Parser:                           </factor>
+Parser:                         </term>
+Parser:                       </expression>
+Parser:                     </expr list>
  30:  }
-Parser:             </function call>
+Parser:                   </function call>
  31:  
  32:  
  33:  
  34:  
  35:  
  36:  
-Parser:           </call-statm>
-Parser:         </statement>
-Parser:       </statm list>
-Parser:     </func-body>
-Parser:     </func decl>
-Parser:     </program>
+Parser:                 </call-statm>
+Parser:               </statement>
+Parser:             </statm list>
+Parser:           </func-body>
+Parser:         </func decl>
+Parser:       </program>
 Tree:     int LF;
 Tree:     int gcd(int a, int b) {
 Tree:       while (a != b) {

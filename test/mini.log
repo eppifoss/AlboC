@@ -9,8 +9,11 @@ Scanner:	nameToken main
 Scanner:	leftParToken
 Scanner:	rightParToken
  6:  {
- 7:    return 0;
 Scanner:	leftCurlToken
+ 7:    return 0;
 Scanner:	returnToken
 Scanner:	numberToken 0
+Scanner:	semicolonToken
+ 8:  }
+Scanner:	rightCurlToken
 Scanner:	eofToken

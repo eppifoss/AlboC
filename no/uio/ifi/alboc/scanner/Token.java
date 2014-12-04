@@ -8,7 +8,7 @@ package no.uio.ifi.alboc.scanner;
  * The different kinds of tokens read by Scanner.
  */
 public enum Token { 
-    addToken("+"), ampToken("&"),  
+    addToken("+"), ampToken("&"), assignToken("="), 
     commaToken(","), 
     divideToken("/"),
     elseToken("else"), eofToken("eof"), equalToken("=="), 
@@ -19,7 +19,7 @@ public enum Token {
     nameToken("name"), notEqualToken("!="), numberToken("number"), 
     returnToken("return"), rightBracketToken("]"), rightCurlToken("}"), rightParToken(")"), 
     semicolonToken(";"), starToken("*"), subtractToken("-"), 
-    whileToken("while"), assignToken("=");
+    whileToken("while");
 
 
     String tokenValue;

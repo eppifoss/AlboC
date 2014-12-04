@@ -1,6 +1,6 @@
+ 0:  
  1:  # Test all the operators
  2:  
- 0:  
  3:  int print (int x, int op1, int op2, int y, int res)
 Scanner:	intToken
 Scanner:	nameToken print
@@ -19,10 +19,10 @@ Scanner:	nameToken y
 Scanner:	commaToken
 Scanner:	intToken
 Scanner:	nameToken res
- 4:  {
 Scanner:	rightParToken
- 5:    putint(x);  putchar(' ');  putchar(op1);  
+ 4:  {
 Scanner:	leftCurlToken
+ 5:    putint(x);  putchar(' ');  putchar(op1);  
 Scanner:	nameToken putint
 Scanner:	leftParToken
 Scanner:	nameToken x
@@ -89,10 +89,10 @@ Scanner:	leftParToken
 Scanner:	numberToken 10
 Scanner:	rightParToken
  10:  
- 9:  }
 Scanner:	semicolonToken
- 11:  int test (int a, int b)
+ 9:  }
 Scanner:	rightCurlToken
+ 11:  int test (int a, int b)
 Scanner:	intToken
 Scanner:	nameToken test
 Scanner:	leftParToken
@@ -101,10 +101,10 @@ Scanner:	nameToken a
 Scanner:	commaToken
 Scanner:	intToken
 Scanner:	nameToken b
- 12:  {
 Scanner:	rightParToken
- 13:    print(a, '+', ' ', b, a+b);
+ 12:  {
 Scanner:	leftCurlToken
+ 13:    print(a, '+', ' ', b, a+b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -119,8 +119,8 @@ Scanner:	nameToken a
 Scanner:	addToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 14:    print(a, '-', ' ', b, a-b);
 Scanner:	semicolonToken
+ 14:    print(a, '-', ' ', b, a-b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -135,8 +135,8 @@ Scanner:	nameToken a
 Scanner:	subtractToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 15:    print(a, '*', ' ', b, a*b);
 Scanner:	semicolonToken
+ 15:    print(a, '*', ' ', b, a*b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -151,8 +151,8 @@ Scanner:	nameToken a
 Scanner:	starToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 16:    print(a, '/', ' ', b, a/b);
 Scanner:	semicolonToken
+ 16:    print(a, '/', ' ', b, a/b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -167,8 +167,8 @@ Scanner:	nameToken a
 Scanner:	divideToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 17:    print(a, '=', '=', b, a==b);
 Scanner:	semicolonToken
+ 17:    print(a, '=', '=', b, a==b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -180,11 +180,12 @@ Scanner:	commaToken
 Scanner:	nameToken b
 Scanner:	commaToken
 Scanner:	nameToken a
-Scanner:	equalToken
+Scanner:	assignToken
+Scanner:	assignToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 18:    print(a, '!', '=', b, a!=b);
 Scanner:	semicolonToken
+ 18:    print(a, '!', '=', b, a!=b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -199,8 +200,8 @@ Scanner:	nameToken a
 Scanner:	notEqualToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 19:    print(a, '<', ' ', b, a<b);
 Scanner:	semicolonToken
+ 19:    print(a, '<', ' ', b, a<b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -215,8 +216,8 @@ Scanner:	nameToken a
 Scanner:	lessToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 20:    print(a, '<', '=', b, a<=b);
 Scanner:	semicolonToken
+ 20:    print(a, '<', '=', b, a<=b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -231,8 +232,8 @@ Scanner:	nameToken a
 Scanner:	lessEqualToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 21:    print(a, '>', ' ', b, a>b);
 Scanner:	semicolonToken
+ 21:    print(a, '>', ' ', b, a>b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -247,8 +248,8 @@ Scanner:	nameToken a
 Scanner:	greaterToken
 Scanner:	nameToken b
 Scanner:	rightParToken
- 22:    print(a, '>', '=', b, a>=b);
 Scanner:	semicolonToken
+ 22:    print(a, '>', '=', b, a>=b);
 Scanner:	nameToken print
 Scanner:	leftParToken
 Scanner:	nameToken a
@@ -264,17 +265,17 @@ Scanner:	greaterEqualToken
 Scanner:	nameToken b
 Scanner:	rightParToken
  24:  
- 23:  }
 Scanner:	semicolonToken
- 25:  int main () 
+ 23:  }
 Scanner:	rightCurlToken
+ 25:  int main () 
 Scanner:	intToken
 Scanner:	nameToken main
 Scanner:	leftParToken
 Scanner:	rightParToken
  26:  {
- 27:    int va[3];  int vb[3];  int ia;  int ib;
 Scanner:	leftCurlToken
+ 27:    int va[3];  int vb[3];  int ia;  int ib;
 Scanner:	intToken
 Scanner:	nameToken va
 Scanner:	leftBracketToken
@@ -293,14 +294,15 @@ Scanner:	semicolonToken
 Scanner:	intToken
  28:  
 Scanner:	nameToken ib
- 29:    va[0] = -3;   va[1] = 0;  va[2] = 17;
 Scanner:	semicolonToken
+ 29:    va[0] = -3;   va[1] = 0;  va[2] = 17;
 Scanner:	nameToken va
 Scanner:	leftBracketToken
 Scanner:	numberToken 0
 Scanner:	rightBracketToken
 Scanner:	assignToken
-Scanner:	numberToken -3
+Scanner:	subtractToken
+Scanner:	numberToken 3
 Scanner:	semicolonToken
 Scanner:	nameToken va
 Scanner:	leftBracketToken
@@ -315,14 +317,15 @@ Scanner:	numberToken 2
 Scanner:	rightBracketToken
 Scanner:	assignToken
 Scanner:	numberToken 17
- 30:    vb[0] = -32;  vb[1] = 2;  vb[2] = 17;
 Scanner:	semicolonToken
+ 30:    vb[0] = -32;  vb[1] = 2;  vb[2] = 17;
 Scanner:	nameToken vb
 Scanner:	leftBracketToken
 Scanner:	numberToken 0
 Scanner:	rightBracketToken
 Scanner:	assignToken
-Scanner:	numberToken -32
+Scanner:	subtractToken
+Scanner:	numberToken 32
 Scanner:	semicolonToken
 Scanner:	nameToken vb
 Scanner:	leftBracketToken
@@ -338,8 +341,8 @@ Scanner:	rightBracketToken
 Scanner:	assignToken
  31:  
 Scanner:	numberToken 17
+Scanner:	semicolonToken
  32:    for (ia = 0;  ia < 3;  ia = ia+1) {
-Scanner:	semicolonToken
 Scanner:	forToken
 Scanner:	leftParToken
 Scanner:	nameToken ia
@@ -356,8 +359,8 @@ Scanner:	nameToken ia
 Scanner:	addToken
 Scanner:	numberToken 1
 Scanner:	rightParToken
+Scanner:	leftCurlToken
  33:      for (ib = 0;  ib < 3;  ib = ib+1) {
-Scanner:	leftCurlToken
 Scanner:	forToken
 Scanner:	leftParToken
 Scanner:	nameToken ib
@@ -374,8 +377,8 @@ Scanner:	nameToken ib
 Scanner:	addToken
 Scanner:	numberToken 1
 Scanner:	rightParToken
- 34:        test(va[ia], vb[ib]);
 Scanner:	leftCurlToken
+ 34:        test(va[ia], vb[ib]);
 Scanner:	nameToken test
 Scanner:	leftParToken
 Scanner:	nameToken va
@@ -388,8 +391,11 @@ Scanner:	leftBracketToken
 Scanner:	nameToken ib
 Scanner:	rightBracketToken
 Scanner:	rightParToken
- 35:      }
 Scanner:	semicolonToken
+ 35:      }
+Scanner:	rightCurlToken
  36:    }
+Scanner:	rightCurlToken
+ 37:  }
 Scanner:	rightCurlToken
 Scanner:	eofToken

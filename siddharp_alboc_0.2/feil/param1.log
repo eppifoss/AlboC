@@ -1,0 +1,5 @@
+Parser:       <program>
+Parser:         <type>
+Parser:         </type>
+Parser:         <func decl>
+AlboC error: A rightParToken expected, but found a commaToken!

@@ -1,0 +1,94 @@
+Parser:       <program>
+Parser:         <type>
+Parser:         </type>
+Parser:         <func decl>
+Parser:           <type>
+Parser:           </type>
+Parser:           <param decl>
+Parser:           </param decl>
+Parser:           <type>
+ 1:   int f (int a, int b)
+Parser:           </type>
+Parser:           <param decl>
+ 2:  {
+Parser:           </param decl>
+Parser:           <func-body>
+Parser:             <statm list>
+Parser:               <statement>
+Parser:                 <return-statm>
+Parser:                   <expression>
+Parser:                     <term>
+Parser:                       <factor>
+Parser:                         <primary>
+Parser:                           <operand>
+Parser:                             <variable>
+Parser:                             </variable>
+Parser:                           </operand>
+Parser:                         </primary>
+Parser:                         <factor opr>
+ 3:     return a*b;
+Parser:                         </factor opr>
+Parser:                         <primary>
+Parser:                           <operand>
+Parser:                             <variable>
+ 4:  }
+Parser:                             </variable>
+Parser:                           </operand>
+Parser:                         </primary>
+Parser:                       </factor>
+Parser:                     </term>
+Parser:                   </expression>
+ 5:  
+Parser:                 </return-statm>
+Parser:               </statement>
+Parser:             </statm list>
+Parser:           </func-body>
+Parser:         </func decl>
+Parser:         <type>
+Parser:         </type>
+Parser:         <func decl>
+ 6:  int main () 
+ 7:  {
+Parser:           <func-body>
+Parser:             <statm list>
+Parser:               <statement>
+Parser:                 <call-statm>
+Parser:                   <function call>
+Parser:                     <expr list>
+Parser:                       <expression>
+Parser:                         <term>
+Parser:                           <factor>
+Parser:                             <primary>
+Parser:                               <operand>
+Parser:                                 <function call>
+Parser:                                   <expr list>
+Parser:                                     <expression>
+Parser:                                       <term>
+Parser:                                         <factor>
+Parser:                                           <primary>
+Parser:                                             <operand>
+Parser:                                               <number>
+Parser:                                               </number>
+Parser:                                             </operand>
+Parser:                                           </primary>
+Parser:                                         </factor>
+Parser:                                       </term>
+Parser:                                     </expression>
+Parser:                                     <expression>
+Parser:                                       <term>
+Parser:                                         <factor>
+Parser:                                           <primary>
+Parser:                                             <operand>
+Parser:                                               <number>
+Parser:                                               </number>
+Parser:                                             </operand>
+Parser:                                           </primary>
+Parser:                                         </factor>
+Parser:                                       </term>
+Parser:                                     </expression>
+Parser:                                     <expression>
+Parser:                                       <term>
+Parser:                                         <factor>
+Parser:                                           <primary>
+Parser:                                             <operand>
+AlboC error in line 7: An operand expected, but found a rightParToken!

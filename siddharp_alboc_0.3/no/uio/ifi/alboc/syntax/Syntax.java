@@ -2186,7 +2186,7 @@ class FunctionCall extends Operand {
 			  (k+1));
 	}
 	Code.genInstr("","call", funcName,"call "+funcName);
-	Code.genInstr("","addl","$8,%esp","Remove parameter");
+	Code.genInstr("","addl","$4,%esp","Remove parameter");
     }
    
     static FunctionCall parse() {

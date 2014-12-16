@@ -88,6 +88,7 @@ abstract class SyntaxUnit {
  
     abstract void check(DeclList curDecls);
     abstract void genCode(FuncDecl curFunc);
+    
     abstract void printTree();
  
     void error(String message) {
@@ -533,7 +534,7 @@ class GlobalVarDecl extends VarDecl {
 	//-- Must be changed in part 2:
 	Code.genInstr("",".globl", assemblerName,"");
 	if(isArray){
-	    Code.genInstr(assemblerName,".fill",declSize()+",4,0","");
+	    Code.genInstr(assemblerName,".fill",numElems+",4,0","");
 	}else{
 	    Code.genInstr(assemblerName,".fill","1,4,0","");
 	}
@@ -773,7 +774,6 @@ class FuncBody extends SyntaxUnit {
 class StatmList extends SyntaxUnit {
  
     Statement firstStatm = null;
- 
     @Override
     void check(DeclList curDecls) {
 	//-- Must be changed in part 2:
@@ -1026,11 +1026,13 @@ class Assignment extends SyntaxUnit {
     
     @Override
     void genCode(FuncDecl curFunc) {
-	//-- Must be changed in part 2:
+	//-- Must be changed in part 2:                
+	/*  PROBLEM POSSIBLY HERE  -- FIXED think (double check)
 	if(lhs.var.index != null){
 	    lhs.var.index.genCode(curFunc);
 	    Code.genInstr("","pushl","%eax","");
-	}
+	}  
+	*/  
 	lhs.genCode(curFunc);
 	Code.genInstr("","pushl","%eax","");
 	e.genCode(curFunc);
@@ -1489,7 +1491,6 @@ class Expression extends SyntaxUnit {
 	    secondTerm.genCode(curFunc);	    
 	    relOpr.genCode(curFunc);
 	}
-	
     }
    
     static Expression parse() {
@@ -1971,7 +1972,7 @@ class TermOpr extends Operator {
 class FactorOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
-	Code.genInstr("","movl","%eax,%eax","");
+	Code.genInstr("","movl","%eax,%ecx","");
 	Code.genInstr("","popl","%eax","");
 	switch (oprToken) {
 	case starToken:
@@ -2120,13 +2121,15 @@ class FunctionCall extends Operand {
 	    e[i++] =  cur;
 	    cur = cur.nextExpr;
 	}
+	int p_bit = (i * 4);    
 	for(int k = i-1; k >= 0 ; k --){
 	    e[k].genCode(curFunc);
 	    Code.genInstr("","pushl","%eax","Push Parameter #"+
 			  (k+1));
 	}
 	Code.genInstr("","call", funcName,"call "+funcName);
-	Code.genInstr("","addl","$4,%esp","Remove parameter");
+	Code.genInstr("","addl", "$"+p_bit+",%esp","Remove parameter");
+	
     }
    
     static FunctionCall parse() {
@@ -2271,13 +2274,14 @@ class Variable extends Operand {
 	if(index != null){
 	    index.genCode(curFunc);
 	    Code.genInstr("","leal",declRef.assemblerName+",%edx"
-			  , varName+"[index]");
+			  , varName+"[...]");
 	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
 	}else{
 	    Code.genInstr("","movl",declRef.assemblerName+",%eax"
 			  , varName);
 	}
     }
+    
    
     void genAddressCode(FuncDecl curFunc) {
 	// Generate code to load the _address_ of the variable

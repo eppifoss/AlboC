@@ -1,0 +1,11 @@
+Checking types: Line 4: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 4: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 5: Parameter #1 in call on putint,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 5: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 6: return e; in int f(...),
+                where Type(e) is int
+AlboC error: Running gcc produced errors!

@@ -1,0 +1,121 @@
+Checking types: Line 14:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 14: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 14:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 15:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 15: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 15:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 16: a[e],
+                where Type(a) is int[] and Type(e) is int
+Checking types: Line 16:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 15: for(...,t,...) ...,
+                where Type(t) is int
+Checking types: Line 14: for(...,t,...) ...,
+                where Type(t) is int
+Checking types: Line 25: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 32: x lessToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 32: Parameter #1 in call on n_chars,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 32: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 32: if (t) ...,
+                where Type(t) is int
+Checking types: Line 33: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 33: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 33: if (t) ...,
+                where Type(t) is int
+Checking types: Line 34: Parameter #1 in call on n_chars,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 34: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 43: Parameter #1 in call on n_chars,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 43:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 43: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 43:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 43: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 43: for(...,t,...) ...,
+                where Type(t) is int
+Checking types: Line 44: Parameter #1 in call on putint,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 51: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 52: return e; in int f(...),
+                where Type(e) is int
+Checking types: Line 51: if (t) ...,
+                where Type(t) is int
+Checking types: Line 60:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 61:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 61: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 61:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 62: a[e],
+                where Type(a) is int[] and Type(e) is int
+Checking types: Line 63: Parameter #1 in call on mod,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 63: Parameter #2 in call on mod,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 63: x equalToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 63: x greaterToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 63: Parameter #1 in call on and,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 63: Parameter #2 in call on and,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 63: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 63: if (t) ...,
+                where Type(t) is int
+Checking types: Line 64: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 64: Parameter #1 in call on pn,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 64: Parameter #2 in call on pn,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 64:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 62: if (t) ...,
+                where Type(t) is int
+Checking types: Line 61: for(...,t,...) ...,
+                where Type(t) is int
+Checking types: Line 67: Parameter #1 in call on putchar,
+                where Type(actual) is int and Type(formal) is int
+Checking types: Line 73:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 76: a[e],
+                where Type(a) is int[] and Type(e) is int
+Checking types: Line 76:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 77:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 77: x lessEqualToken y,
+                where Type(x) is int and Type(y) is int
+Checking types: Line 77:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 77: a[e],
+                where Type(a) is int[] and Type(e) is int
+Checking types: Line 77:  v = e,
+                where Type(v) is int and Type(e) is int
+Checking types: Line 77: for(...,t,...) ...,
+                where Type(t) is int
+Checking types: Line 81: return e; in int f(...),
+                where Type(e) is int
+AlboC error: Running gcc produced errors!

@@ -2277,7 +2277,7 @@ class Variable extends Operand {
 			  , varName+"[...]");
 	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
 	}else{
-	    Code.genInstr("","movl",declRef.assemblerName+",%eax"
+	    Code.genInstr("","leal",declRef.assemblerName+",%eax"
 			  , varName);
 	}
     }

@@ -2273,7 +2273,7 @@ class Variable extends Operand {
 
 	if(index != null){
 	    index.genCode(curFunc);
-	    Code.genInstr("","leal",declRef.assemblerName+",%edx"
+	    Code.genInstr("","movl",declRef.assemblerName+",%edx"
 			  , varName+"[...]");
 	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
 	}else{

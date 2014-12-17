@@ -1017,23 +1017,28 @@ class Assignment extends SyntaxUnit {
 	e.check(curDecls);
 	Log.noteTypeCheck(" v = e",lhs.type,"v",e.type,"e",
 			  lineNum);
-	if((e.type instanceof ValueType) ||
-	   (lhs.type == e.type) ||
-	   (e.type == Types.intType)){
-	    //OK
-	}else{
+	
+	if((lhs.type instanceof ValueType)){
+		if(lhs.type.isSameType(e.type)){
+		    return;
+		}
+		if(e.type == Types.intType){
+		    return;
+		}
+
+	    }
 	    error("Assignment must be of int or of the same type");
-	}
     }
+	    
     
     @Override
     void genCode(FuncDecl curFunc) {
 	//-- Must be changed in part 2:                
 	/*  PROBLEM POSSIBLY HERE  -- FIXED think (double check)
-	if(lhs.var.index != null){
+	    if(lhs.var.index != null){
 	    lhs.var.index.genCode(curFunc);
 	    Code.genInstr("","pushl","%eax","");
-	}  
+	    }  
 	*/  
 	lhs.genCode(curFunc);
 	Code.genInstr("","pushl","%eax","");
@@ -2106,23 +2111,27 @@ class FunctionCall extends Operand {
 	
 	if(elist == null){ return ;}
 	func.checkWhetherFunction(elist.dataSize(), this);
-
-	elist.check(curDecls);
+	//elist.check(curDecls);
 	Expression cur = elist.firstExpr;
+	Declaration d = func.funcParams.firstDecl;
+
 	int i = 1;
 	while( cur!= null){
+	    cur.check(curDecls);
 	    Log.noteTypeCheck("Parameter #"+i+" in call on " +
 			      funcName, cur.type,"actual",
 			      type,"formal", lineNum);
 
 	    Type t = func.funcParams.get(i);
 
-	    if(	(cur.type == Types.intType) ||
-		(t.isSameType(cur.type)) ){
+
+	    if (cur.type != Types.intType){
+	    }else if(	(cur.type.isSameType(d.type))){
 	    }else{
 		error("function-call type mismatch error");
 	    }
 	    cur = cur.nextExpr;
+	    d = d.nextDecl;
 	    i++;
 	}
 

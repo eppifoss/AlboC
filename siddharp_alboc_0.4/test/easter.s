@@ -3,14 +3,12 @@ mod:    enter   $0,$0                   # Start function mod ;
         movl    8(%ebp),%eax            # x
         pushl   %eax                    
         movl    8(%ebp),%eax            # x
+        pushl   %eax                    
+        movl    12(%ebp),%eax           # y
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    12(%ebp),%eax           # y
-        movl    %eax,%ecx               
-        popl    %eax                    
-        imull   %ecx,%eax               # Multiply
         movl    %eax,%ecx               
         popl    %eax                    
         subl    %ecx,%eax               # Compute -
@@ -33,11 +31,12 @@ easter: enter   $80,$0                  # Start function easter ;
         leal    -8(%ebp),%eax           # b
         pushl   %eax                    
         movl    8(%ebp),%eax            # y
+        pushl   %eax                    
+        movl    $100,%eax               # 100
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $100,%eax               # 100
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -12(%ebp),%eax          # c
@@ -53,11 +52,12 @@ easter: enter   $80,$0                  # Start function easter ;
         leal    -16(%ebp),%eax          # d
         pushl   %eax                    
         movl    -8(%ebp),%eax           # b
+        pushl   %eax                    
+        movl    $4,%eax                 # 4
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $4,%eax                 # 4
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -20(%ebp),%eax          # e
@@ -78,11 +78,12 @@ easter: enter   $80,$0                  # Start function easter ;
         movl    %eax,%ecx               
         popl    %eax                    
         addl    %ecx,%eax               # Compute +
+        pushl   %eax                    
+        movl    $25,%eax                # 25
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $25,%eax                # 25
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -28(%ebp),%eax          # g
@@ -93,11 +94,12 @@ easter: enter   $80,$0                  # Start function easter ;
         movl    %eax,%ecx               
         popl    %eax                    
         subl    %ecx,%eax               # Compute -
+        pushl   %eax                    
+        movl    $3,%eax                 # 3
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $3,%eax                 # 3
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -32(%ebp),%eax          # h
@@ -105,10 +107,11 @@ easter: enter   $80,$0                  # Start function easter ;
         movl    $30,%eax                # 30
         pushl   %eax                    # Push Parameter #2
         movl    $19,%eax                # 19
+        pushl   %eax                    
+        movl    -4(%ebp),%eax           # a
         movl    %eax,%ecx               
         popl    %eax                    
         imull   %ecx,%eax               # Multiply
-        movl    -4(%ebp),%eax           # a
         pushl   %eax                    
         movl    $15,%eax                # 15
         movl    %eax,%ecx               
@@ -122,11 +125,12 @@ easter: enter   $80,$0                  # Start function easter ;
         leal    -36(%ebp),%eax          # i
         pushl   %eax                    
         movl    -12(%ebp),%eax          # c
+        pushl   %eax                    
+        movl    $4,%eax                 # 4
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $4,%eax                 # 4
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -40(%ebp),%eax          # k
@@ -159,18 +163,20 @@ easter: enter   $80,$0                  # Start function easter ;
         movl    -4(%ebp),%eax           # a
         pushl   %eax                    
         movl    $22,%eax                # 22
-        movl    %eax,%ecx               
-        popl    %eax                    
-        imull   %ecx,%eax               # Multiply
+        pushl   %eax                    
         movl    -44(%ebp),%eax          # l
         movl    %eax,%ecx               
         popl    %eax                    
+        imull   %ecx,%eax               # Multiply
+        movl    %eax,%ecx               
+        popl    %eax                    
         addl    %ecx,%eax               # Compute +
+        pushl   %eax                    
+        movl    $451,%eax               # 451
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $451,%eax               # 451
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -52(%ebp),%eax          # month
@@ -181,11 +187,12 @@ easter: enter   $80,$0                  # Start function easter ;
         movl    %eax,%ecx               
         popl    %eax                    
         addl    %ecx,%eax               # Compute +
+        pushl   %eax                    
+        movl    $31,%eax                # 31
         movl    %eax,%ecx               
         popl    %eax                    
         cdq                             
         idivl   %ecx                    # Divide
-        movl    $31,%eax                # 31
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -76(%ebp),%eax          # day

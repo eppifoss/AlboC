@@ -1623,7 +1623,16 @@ class Factor extends SyntaxUnit {
 		p.genCode(curFunc);
 	    }
 	    if (i != prims.size()-1) {
-		opers.get(i).genCode(curFunc);
+		p = prims.get(i+1);
+		if( p != null){
+		    Code.genInstr("","pushl","%eax","");
+		    p.genCode(curFunc);
+		}
+		Operator op = opers.get(i);
+		if(op!=null){
+		    op.genCode(curFunc);
+		}
+		i++;
 	    }
 	}	
     }
@@ -1683,6 +1692,9 @@ class Primary extends SyntaxUnit {
     void genCode(FuncDecl curFunc) {
 	//-- Must be changed in part 2:
 	o.genCode(curFunc);
+	if(po != null){
+	    po.genCode(curFunc);
+	}
     }
    
     static Primary parse() {
@@ -2014,6 +2026,14 @@ class FactorOpr extends Operator {
 class PrefixOpr extends Operator {
     @Override
     void genCode(FuncDecl curFunc) {
+	switch(oprToken){
+	case starToken:
+	    Code.genInstr("","movl","(%eax),%eax","");
+	    break;
+	case subtractToken:
+	    Code.genInstr("","negl","%eax","");
+	    break;
+	}	    
     }
    
     static PrefixOpr parse() {
@@ -2098,7 +2118,7 @@ class FunctionCall extends Operand {
 	    Type t = func.funcParams.get(i);
 
 	    if(	(cur.type == Types.intType) ||
-	        (t.isSameType(cur.type)) ){
+		(t.isSameType(cur.type)) ){
 	    }else{
 		error("function-call type mismatch error");
 	    }

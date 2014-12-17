@@ -112,6 +112,8 @@ class Program extends SyntaxUnit {
 	    //-- Must be changed in part 2:
 	    FuncDecl main = (FuncDecl)progDecls.findDecl("main",
 							 this);
+	    Log.noteBinding("main",-1,main.lineNum);
+	    
 	    if(main != null){
 		if(main.funcParams != null){
 		    error("main cannot have arguments");
@@ -2079,6 +2081,8 @@ class FunctionCall extends Operand {
 
 	FuncDecl func = (FuncDecl) curDecls.findDecl(funcName, this);
 	type = func.type;
+
+	Log.noteBinding(funcName,lineNum,func.lineNum);
 	
 	if(elist == null){ return ;}
 	func.checkWhetherFunction(elist.dataSize(), this);
@@ -2246,6 +2250,8 @@ class Variable extends Operand {
 	d.checkWhetherVariable(this);
 	declRef = (VarDecl)d;
 
+	Log.noteBinding(varName,lineNum,d.lineNum);
+
 	if (index == null) {
 	    type = d.type;
 	} else {
@@ -2273,12 +2279,20 @@ class Variable extends Operand {
 
 	if(index != null){
 	    index.genCode(curFunc);
-	    Code.genInstr("","movl",declRef.assemblerName+",%edx"
+	    if(declRef.type instanceof ArrayType){
+	    Code.genInstr("","leal",declRef.assemblerName+",%edx"
 			  , varName+"[...]");
-	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
+	    }else{
+		Code.genInstr("","movl","(%edx,%eax,4),%eax","");
+	    }
 	}else{
-	    Code.genInstr("","leal",declRef.assemblerName+",%eax"
-			  , varName);
+	    if(declRef.type instanceof ArrayType){
+		Code.genInstr("","leal",declRef.assemblerName+",%eax"
+			      , varName);
+	    }else{
+		Code.genInstr("","movl",declRef.assemblerName+",%eax"
+			  ,varName);
+	    }
 	}
     }
     

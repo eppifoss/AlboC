@@ -15,7 +15,7 @@ my_gets:
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
 .L0001:                                 # Start while-statement
-        leal    true,%eax               # true
+        movl    true,%eax               # true
         cmpl    $0,%eax                 
         je      .L0002                  
         leal    -8(%ebp),%eax           # c
@@ -24,16 +24,16 @@ my_gets:
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
                                         # Start If-statement
-        leal    -8(%ebp),%eax           # c
+        movl    -8(%ebp),%eax           # c
         pushl   %eax                    
-        leal    LF,%eax                 # LF
+        movl    LF,%eax                 # LF
         popl    %ecx                    
         cmpl    %eax,%ecx               
         movl    $0,%eax                 
         sete    %al                     # Test ==
         cmpl    $0,%eax                 
         je      .L0003                  
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         movl    8(%ebp),%edx            # s[...]
         leal    (%edx,%eax,4),%eax      
         pushl   %eax                    
@@ -43,16 +43,16 @@ my_gets:
         movl    $0,%eax                 # 0
         jmp     .exit$my_gets           # Return-Statement
 .L0003:                                 
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         movl    8(%ebp),%edx            # s[...]
         leal    (%edx,%eax,4),%eax      
         pushl   %eax                    
-        leal    -8(%ebp),%eax           # c
+        movl    -8(%ebp),%eax           # c
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -4(%ebp),%eax           # i
         pushl   %eax                    
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         pushl   %eax                    
         movl    $1,%eax                 # 1
         movl    %eax,%ecx               
@@ -67,7 +67,7 @@ my_gets:
         ret                             # end my_gets
         .globl  p1                      
 p1:     enter   $0,$0                   # Start function p1 ;
-        leal    8(%ebp),%eax            # c1
+        movl    8(%ebp),%eax            # c1
         pushl   %eax                    # Push Parameter #1
         call    putchar                 # call putchar
         addl    $4,%esp                 # Remove parameter
@@ -76,11 +76,11 @@ p1:     enter   $0,$0                   # Start function p1 ;
         ret                             # end p1
         .globl  p2                      
 p2:     enter   $0,$0                   # Start function p2 ;
-        leal    8(%ebp),%eax            # c1
+        movl    8(%ebp),%eax            # c1
         pushl   %eax                    # Push Parameter #1
         call    p1                      # call p1
         addl    $4,%esp                 # Remove parameter
-        leal    12(%ebp),%eax           # c2
+        movl    12(%ebp),%eax           # c2
         pushl   %eax                    # Push Parameter #1
         call    p1                      # call p1
         addl    $4,%esp                 # Remove parameter
@@ -89,13 +89,13 @@ p2:     enter   $0,$0                   # Start function p2 ;
         ret                             # end p2
         .globl  p3                      
 p3:     enter   $0,$0                   # Start function p3 ;
-        leal    12(%ebp),%eax           # c2
+        movl    12(%ebp),%eax           # c2
         pushl   %eax                    # Push Parameter #2
-        leal    8(%ebp),%eax            # c1
+        movl    8(%ebp),%eax            # c1
         pushl   %eax                    # Push Parameter #1
         call    p2                      # call p2
         addl    $8,%esp                 # Remove parameter
-        leal    16(%ebp),%eax           # c3
+        movl    16(%ebp),%eax           # c3
         pushl   %eax                    # Push Parameter #1
         call    p1                      # call p1
         addl    $4,%esp                 # Remove parameter
@@ -104,15 +104,15 @@ p3:     enter   $0,$0                   # Start function p3 ;
         ret                             # end p3
         .globl  p4                      
 p4:     enter   $0,$0                   # Start function p4 ;
-        leal    16(%ebp),%eax           # c3
+        movl    16(%ebp),%eax           # c3
         pushl   %eax                    # Push Parameter #3
-        leal    12(%ebp),%eax           # c2
+        movl    12(%ebp),%eax           # c2
         pushl   %eax                    # Push Parameter #2
-        leal    8(%ebp),%eax            # c1
+        movl    8(%ebp),%eax            # c1
         pushl   %eax                    # Push Parameter #1
         call    p3                      # call p3
         addl    $12,%esp                # Remove parameter
-        leal    20(%ebp),%eax           # c4
+        movl    20(%ebp),%eax           # c4
         pushl   %eax                    # Push Parameter #1
         call    p1                      # call p1
         addl    $4,%esp                 # Remove parameter
@@ -121,33 +121,33 @@ p4:     enter   $0,$0                   # Start function p4 ;
         ret                             # end p4
         .globl  p12                     
 p12:    enter   $0,$0                   # Start function p12 ;
-        leal    20(%ebp),%eax           # c4
+        movl    20(%ebp),%eax           # c4
         pushl   %eax                    # Push Parameter #4
-        leal    16(%ebp),%eax           # c3
+        movl    16(%ebp),%eax           # c3
         pushl   %eax                    # Push Parameter #3
-        leal    12(%ebp),%eax           # c2
+        movl    12(%ebp),%eax           # c2
         pushl   %eax                    # Push Parameter #2
-        leal    8(%ebp),%eax            # c1
+        movl    8(%ebp),%eax            # c1
         pushl   %eax                    # Push Parameter #1
         call    p4                      # call p4
         addl    $16,%esp                # Remove parameter
-        leal    36(%ebp),%eax           # c8
+        movl    36(%ebp),%eax           # c8
         pushl   %eax                    # Push Parameter #4
-        leal    32(%ebp),%eax           # c7
+        movl    32(%ebp),%eax           # c7
         pushl   %eax                    # Push Parameter #3
-        leal    28(%ebp),%eax           # c6
+        movl    28(%ebp),%eax           # c6
         pushl   %eax                    # Push Parameter #2
-        leal    24(%ebp),%eax           # c5
+        movl    24(%ebp),%eax           # c5
         pushl   %eax                    # Push Parameter #1
         call    p4                      # call p4
         addl    $16,%esp                # Remove parameter
-        leal    52(%ebp),%eax           # c12
+        movl    52(%ebp),%eax           # c12
         pushl   %eax                    # Push Parameter #4
-        leal    48(%ebp),%eax           # c11
+        movl    48(%ebp),%eax           # c11
         pushl   %eax                    # Push Parameter #3
-        leal    44(%ebp),%eax           # c10
+        movl    44(%ebp),%eax           # c10
         pushl   %eax                    # Push Parameter #2
-        leal    40(%ebp),%eax           # c9
+        movl    40(%ebp),%eax           # c9
         pushl   %eax                    # Push Parameter #1
         call    p4                      # call p4
         addl    $16,%esp                # Remove parameter
@@ -163,21 +163,19 @@ my_puts:
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
 .L0005:                                 # Start while-statement
-        leal    -4(%ebp),%eax           # i
-        movl    8(%ebp),%edx            # s[...]
+        movl    -4(%ebp),%eax           # i
         movl    (%edx,%eax,4),%eax      
         cmpl    $0,%eax                 
         je      .L0006                  
         leal    -8(%ebp),%eax           # c
         pushl   %eax                    
-        leal    -4(%ebp),%eax           # i
-        movl    8(%ebp),%edx            # s[...]
+        movl    -4(%ebp),%eax           # i
         movl    (%edx,%eax,4),%eax      
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
         leal    -4(%ebp),%eax           # i
         pushl   %eax                    
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         pushl   %eax                    
         movl    $1,%eax                 # 1
         movl    %eax,%ecx               
@@ -185,7 +183,7 @@ my_puts:
         addl    %ecx,%eax               # Compute +
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
-        leal    -8(%ebp),%eax           # c
+        movl    -8(%ebp),%eax           # c
         pushl   %eax                    # Push Parameter #1
         call    p1                      # call p1
         addl    $4,%esp                 # Remove parameter
@@ -203,14 +201,13 @@ my_strlen:
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
 .L0007:                                 # Start while-statement
-        leal    -4(%ebp),%eax           # i
-        movl    8(%ebp),%edx            # s[...]
+        movl    -4(%ebp),%eax           # i
         movl    (%edx,%eax,4),%eax      
         cmpl    $0,%eax                 
         je      .L0008                  
         leal    -4(%ebp),%eax           # i
         pushl   %eax                    
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         pushl   %eax                    
         movl    $1,%eax                 # 1
         movl    %eax,%ecx               
@@ -220,7 +217,7 @@ my_strlen:
         movl    %eax,(%edx)             #  = 
         jmp     .L0007                  
 .L0008:                                 # End while-statement
-        leal    -4(%ebp),%eax           # i
+        movl    -4(%ebp),%eax           # i
         jmp     .exit$my_strlen         # Return-Statement
 .exit$my_strlen:                                
         leave                           
@@ -235,7 +232,7 @@ is_palindrome:
         movl    %eax,(%edx)             #  = 
         leal    -8(%ebp),%eax           # i2
         pushl   %eax                    
-        leal    8(%ebp),%eax            # s
+        movl    8(%ebp),%eax            # s
         pushl   %eax                    # Push Parameter #1
         call    my_strlen               # call my_strlen
         addl    $4,%esp                 # Remove parameter
@@ -247,9 +244,9 @@ is_palindrome:
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
 .L0009:                                 # Start while-statement
-        leal    -4(%ebp),%eax           # i1
+        movl    -4(%ebp),%eax           # i1
         pushl   %eax                    
-        leal    -8(%ebp),%eax           # i2
+        movl    -8(%ebp),%eax           # i2
         popl    %ecx                    
         cmpl    %eax,%ecx               
         movl    $0,%eax                 
@@ -257,12 +254,10 @@ is_palindrome:
         cmpl    $0,%eax                 
         je      .L0010                  
                                         # Start If-statement
-        leal    -4(%ebp),%eax           # i1
-        movl    8(%ebp),%edx            # s[...]
+        movl    -4(%ebp),%eax           # i1
         movl    (%edx,%eax,4),%eax      
         pushl   %eax                    
-        leal    -8(%ebp),%eax           # i2
-        movl    8(%ebp),%edx            # s[...]
+        movl    -8(%ebp),%eax           # i2
         movl    (%edx,%eax,4),%eax      
         popl    %ecx                    
         cmpl    %eax,%ecx               
@@ -270,12 +265,12 @@ is_palindrome:
         setne   %al                     # Test !=
         cmpl    $0,%eax                 
         je      .L0011                  
-        leal    false,%eax              # false
+        movl    false,%eax              # false
         jmp     .exit$is_palindrome     # Return-Statement
 .L0011:                                 
         leal    -4(%ebp),%eax           # i1
         pushl   %eax                    
-        leal    -4(%ebp),%eax           # i1
+        movl    -4(%ebp),%eax           # i1
         pushl   %eax                    
         movl    $1,%eax                 # 1
         movl    %eax,%ecx               
@@ -285,7 +280,7 @@ is_palindrome:
         movl    %eax,(%edx)             #  = 
         leal    -8(%ebp),%eax           # i2
         pushl   %eax                    
-        leal    -8(%ebp),%eax           # i2
+        movl    -8(%ebp),%eax           # i2
         pushl   %eax                    
         movl    $1,%eax                 # 1
         movl    %eax,%ecx               
@@ -295,7 +290,7 @@ is_palindrome:
         movl    %eax,(%edx)             #  = 
         jmp     .L0009                  
 .L0010:                                 # End while-statement
-        leal    true,%eax               # true
+        movl    true,%eax               # true
         jmp     .exit$is_palindrome     # Return-Statement
 .exit$is_palindrome:                                
         leave                           
@@ -318,7 +313,7 @@ main:   enter   $808,$0                 # Start function main ;
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
 .L0013:                                 # Start while-statement
-        leal    true,%eax               # true
+        movl    true,%eax               # true
         cmpl    $0,%eax                 
         je      .L0014                  
         movl    $32,%eax                # 32
@@ -386,7 +381,7 @@ main:   enter   $808,$0                 # Start function main ;
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
                                         # Start If-statement
-        leal    -808(%ebp),%eax         # no_p
+        movl    -808(%ebp),%eax         # no_p
         cmpl    $0,%eax                 
         je      .L0017                  
         movl    $32,%eax                # 32
@@ -398,7 +393,7 @@ main:   enter   $808,$0                 # Start function main ;
         call    p3                      # call p3
         addl    $12,%esp                # Remove parameter
 .L0017:                                 
-        leal    LF,%eax                 # LF
+        movl    LF,%eax                 # LF
         pushl   %eax                    # Push Parameter #12
         movl    $46,%eax                # 46
         pushl   %eax                    # Push Parameter #11

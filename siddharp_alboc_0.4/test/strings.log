@@ -1,191 +1,101 @@
-Checking types: Line 15:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 17:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 18: x equalToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 19: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 19:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 19: return e; in int f(...),
-                where Type(e) is int
-Checking types: Line 18: if (t) ...,
-                where Type(t) is int
-Checking types: Line 21: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 21:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 21:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 16: while (t) ...,
-                where Type(t) is int
-Checking types: Line 27: Parameter #1 in call on putchar,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 28: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 28: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 29: Parameter #1 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 29: Parameter #2 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 29: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 30: Parameter #1 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 30: Parameter #2 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 30: Parameter #3 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 30: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #1 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #2 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #3 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #4 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #1 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #2 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #3 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #4 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #1 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #2 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #3 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 34: Parameter #4 in call on p4,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 41:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 42: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 43: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 43:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 43:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 43: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 42: while (t) ...,
-                where Type(t) is int
-Checking types: Line 53:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 54: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 54:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 54: while (t) ...,
-                where Type(t) is int
-Checking types: Line 55: return e; in int f(...),
-                where Type(e) is int
-Checking types: Line 62:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 62: Parameter #1 in call on my_strlen,
-                where Type(actual) is int* and Type(formal) is int
-Checking types: Line 62:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 63: x lessToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 64: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 64: a[e],
-                where Type(a) is int* and Type(e) is int
-Checking types: Line 64: x notEqualToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 64: return e; in int f(...),
-                where Type(e) is int
-Checking types: Line 64: if (t) ...,
-                where Type(t) is int
-Checking types: Line 65:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 65:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 63: while (t) ...,
-                where Type(t) is int
-Checking types: Line 67: return e; in int f(...),
-                where Type(e) is int
-Checking types: Line 77:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 77:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 77:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 80: Parameter #1 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 80: Parameter #2 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 80: Parameter #1 in call on my_gets,
-                where Type(actual) is int[] and Type(formal) is int
-Checking types: Line 81: Parameter #1 in call on my_strlen,
-                where Type(actual) is int[] and Type(formal) is int
-Checking types: Line 81: x equalToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 81: Parameter #1 in call on exit,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 81: if (t) ...,
-                where Type(t) is int
-Checking types: Line 83: Parameter #1 in call on p1,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 83: Parameter #1 in call on my_puts,
-                where Type(actual) is int[] and Type(formal) is int
-Checking types: Line 83: Parameter #1 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 83: Parameter #2 in call on p2,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 83: Parameter #1 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 83: Parameter #2 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 83: Parameter #3 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 84: Parameter #1 in call on is_palindrome,
-                where Type(actual) is int[] and Type(formal) is int
-Checking types: Line 84: x equalToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 84:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 86: Parameter #1 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 86: Parameter #2 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 86: Parameter #3 in call on p3,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 85: if (t) ...,
-                where Type(t) is int
-Checking types: Line 88: Parameter #1 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #2 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #3 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #4 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #5 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #6 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #7 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #8 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #9 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #10 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #11 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 88: Parameter #12 in call on p12,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 79: while (t) ...,
-                where Type(t) is int
+Binding: Line 15: i refers to declaration in line 13
+Binding: Line 16: true refers to declaration in line 6
+Binding: Line 17: c refers to declaration in line 13
+Binding: Line 17: getchar refers to declaration in the library
+Binding: Line 18: c refers to declaration in line 13
+Binding: Line 18: LF refers to declaration in line 7
+Binding: Line 19: s refers to declaration in line 11
+Binding: Line 19: i refers to declaration in line 13
+Binding: Line 21: s refers to declaration in line 11
+Binding: Line 21: i refers to declaration in line 13
+Binding: Line 21: c refers to declaration in line 13
+Binding: Line 21: i refers to declaration in line 13
+Binding: Line 21: i refers to declaration in line 13
+Binding: Line 27: putchar refers to declaration in the library
+Binding: Line 27: c1 refers to declaration in line 27
+Binding: Line 28: p1 refers to declaration in line 27
+Binding: Line 28: c1 refers to declaration in line 28
+Binding: Line 28: p1 refers to declaration in line 27
+Binding: Line 28: c2 refers to declaration in line 28
+Binding: Line 29: p2 refers to declaration in line 28
+Binding: Line 29: c1 refers to declaration in line 29
+Binding: Line 29: c2 refers to declaration in line 29
+Binding: Line 29: p1 refers to declaration in line 27
+Binding: Line 29: c3 refers to declaration in line 29
+Binding: Line 30: p3 refers to declaration in line 29
+Binding: Line 30: c1 refers to declaration in line 30
+Binding: Line 30: c2 refers to declaration in line 30
+Binding: Line 30: c3 refers to declaration in line 30
+Binding: Line 30: p1 refers to declaration in line 27
+Binding: Line 30: c4 refers to declaration in line 30
+Binding: Line 34: p4 refers to declaration in line 30
+Binding: Line 34: c1 refers to declaration in line 31
+Binding: Line 34: c2 refers to declaration in line 31
+Binding: Line 34: c3 refers to declaration in line 31
+Binding: Line 34: c4 refers to declaration in line 31
+Binding: Line 34: p4 refers to declaration in line 30
+Binding: Line 34: c5 refers to declaration in line 31
+Binding: Line 34: c6 refers to declaration in line 31
+Binding: Line 34: c7 refers to declaration in line 32
+Binding: Line 34: c8 refers to declaration in line 32
+Binding: Line 34: p4 refers to declaration in line 30
+Binding: Line 34: c9 refers to declaration in line 32
+Binding: Line 34: c10 refers to declaration in line 32
+Binding: Line 34: c11 refers to declaration in line 32
+Binding: Line 34: c12 refers to declaration in line 32
+Binding: Line 41: i refers to declaration in line 39
+Binding: Line 42: s refers to declaration in line 37
+Binding: Line 42: i refers to declaration in line 39
+Binding: Line 43: c refers to declaration in line 39
+Binding: Line 43: s refers to declaration in line 37
+Binding: Line 43: i refers to declaration in line 39
+Binding: Line 43: i refers to declaration in line 39
+Binding: Line 43: i refers to declaration in line 39
+Binding: Line 43: p1 refers to declaration in line 27
+Binding: Line 43: c refers to declaration in line 39
+Binding: Line 53: i refers to declaration in line 51
+Binding: Line 54: s refers to declaration in line 49
+Binding: Line 54: i refers to declaration in line 51
+Binding: Line 54: i refers to declaration in line 51
+Binding: Line 54: i refers to declaration in line 51
+Binding: Line 55: i refers to declaration in line 51
+Binding: Line 62: i1 refers to declaration in line 60
+Binding: Line 62: i2 refers to declaration in line 60
+Binding: Line 62: my_strlen refers to declaration in line 49
+Binding: Line 62: s refers to declaration in line 58
+Binding: Line 63: i1 refers to declaration in line 60
+Binding: Line 63: i2 refers to declaration in line 60
+Binding: Line 64: s refers to declaration in line 58
+Binding: Line 64: i1 refers to declaration in line 60
+Binding: Line 64: s refers to declaration in line 58
+Binding: Line 64: i2 refers to declaration in line 60
+Binding: Line 64: false refers to declaration in line 6
+Binding: Line 65: i1 refers to declaration in line 60
+Binding: Line 65: i1 refers to declaration in line 60
+Binding: Line 65: i2 refers to declaration in line 60
+Binding: Line 65: i2 refers to declaration in line 60
+Binding: Line 67: true refers to declaration in line 6
+Binding: Line 77: false refers to declaration in line 6
+Binding: Line 77: true refers to declaration in line 6
+Binding: Line 77: LF refers to declaration in line 7
+Binding: Line 79: true refers to declaration in line 6
+Binding: Line 80: p2 refers to declaration in line 28
+Binding: Line 80: my_gets refers to declaration in line 11
+Binding: Line 80: s1 refers to declaration in line 74
+Binding: Line 81: my_strlen refers to declaration in line 49
+Binding: Line 81: s1 refers to declaration in line 74
+Binding: Line 81: exit refers to declaration in the library
+Binding: Line 83: p1 refers to declaration in line 27
+Binding: Line 83: my_puts refers to declaration in line 37
+Binding: Line 83: s1 refers to declaration in line 74
+Binding: Line 83: p2 refers to declaration in line 28
+Binding: Line 83: p3 refers to declaration in line 29
+Binding: Line 84: no_p refers to declaration in line 75
+Binding: Line 84: is_palindrome refers to declaration in line 58
+Binding: Line 84: s1 refers to declaration in line 74
+Binding: Line 85: no_p refers to declaration in line 75
+Binding: Line 86: p3 refers to declaration in line 29
+Binding: Line 88: p12 refers to declaration in line 31
+Binding: Line 88: LF refers to declaration in line 7
+Binding: main refers to declaration in line 72
 AlboC error: Running gcc produced errors!

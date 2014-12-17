@@ -164,12 +164,14 @@ my_puts:
         movl    %eax,(%edx)             #  = 
 .L0005:                                 # Start while-statement
         movl    -4(%ebp),%eax           # i
+        movl    8(%ebp),%edx            # s[...]
         movl    (%edx,%eax,4),%eax      
         cmpl    $0,%eax                 
         je      .L0006                  
         leal    -8(%ebp),%eax           # c
         pushl   %eax                    
         movl    -4(%ebp),%eax           # i
+        movl    8(%ebp),%edx            # s[...]
         movl    (%edx,%eax,4),%eax      
         popl    %edx                    
         movl    %eax,(%edx)             #  = 
@@ -202,6 +204,7 @@ my_strlen:
         movl    %eax,(%edx)             #  = 
 .L0007:                                 # Start while-statement
         movl    -4(%ebp),%eax           # i
+        movl    8(%ebp),%edx            # s[...]
         movl    (%edx,%eax,4),%eax      
         cmpl    $0,%eax                 
         je      .L0008                  
@@ -255,9 +258,11 @@ is_palindrome:
         je      .L0010                  
                                         # Start If-statement
         movl    -4(%ebp),%eax           # i1
+        movl    8(%ebp),%edx            # s[...]
         movl    (%edx,%eax,4),%eax      
         pushl   %eax                    
         movl    -8(%ebp),%eax           # i2
+        movl    8(%ebp),%edx            # s[...]
         movl    (%edx,%eax,4),%eax      
         popl    %ecx                    
         cmpl    %eax,%ecx               

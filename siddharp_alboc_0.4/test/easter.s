@@ -316,6 +316,7 @@ easter: enter   $80,$0                  # Start function easter ;
         je      .L0004                  
         movl    -80(%ebp),%eax          # ix
         leal    -72(%ebp),%edx          # m_name[...]
+        movl    (%edx,%eax,4),%eax      
         pushl   %eax                    # Push Parameter #1
         call    putchar                 # call putchar
         addl    $4,%esp                 # Remove parameter

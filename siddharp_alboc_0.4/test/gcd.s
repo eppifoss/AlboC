@@ -84,7 +84,7 @@ main:   enter   $8,$0                   # Start function main ;
         movl    -4(%ebp),%eax           # v1
         pushl   %eax                    # Push Parameter #1
         call    gcd                     # call gcd
-        addl    $4,%esp                 # Remove parameter
+        addl    $8,%esp                 # Remove parameter
         pushl   %eax                    # Push Parameter #1
         call    putint                  # call putint
         addl    $4,%esp                 # Remove parameter

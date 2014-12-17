@@ -2280,11 +2280,13 @@ class Variable extends Operand {
 	if(index != null){
 	    index.genCode(curFunc);
 	    if(declRef.type instanceof ArrayType){
-	    Code.genInstr("","leal",declRef.assemblerName+",%edx"
-			  , varName+"[...]");
+		Code.genInstr("","leal",declRef.assemblerName+",%edx"
+			      , varName+"[...]");
 	    }else{
-		Code.genInstr("","movl","(%edx,%eax,4),%eax","");
+		Code.genInstr("","movl",declRef.assemblerName+",%edx"
+			  ,varName+"[...]");
 	    }
+	    Code.genInstr("","movl","(%edx,%eax,4),%eax","");
 	}else{
 	    if(declRef.type instanceof ArrayType){
 		Code.genInstr("","leal",declRef.assemblerName+",%eax"

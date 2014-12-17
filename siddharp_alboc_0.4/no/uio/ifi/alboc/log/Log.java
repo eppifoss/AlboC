@@ -122,6 +122,10 @@ public class Log {
     public static void noteBinding(String name, int lineNum, int useLineNum) {
 	if (! doLogBinding) return;
 	//-- Must be changed in part 2:
+	writeLogLine("Binding: " +
+		     (lineNum>0 ? "Line "+lineNum+": " : "") + name +
+		     " refers to declaration in "+
+		     (useLineNum>0 ? ("line " + useLineNum ) : "the library"));
     }
 
     public static void noteTypeCheck(String what, Type t, String s, int lineNum) {

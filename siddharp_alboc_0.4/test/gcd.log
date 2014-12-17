@@ -1,35 +1,26 @@
-Checking types: Line 10: x notEqualToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 11: x lessToken y,
-                where Type(x) is int and Type(y) is int
-Checking types: Line 12:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 14:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 11: if (t) ...,
-                where Type(t) is int
-Checking types: Line 10: while (t) ...,
-                where Type(t) is int
-Checking types: Line 17: return e; in int f(...),
-                where Type(e) is int
-Checking types: Line 24:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 25: Parameter #1 in call onputchar,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 25: Parameter #1 in call onputchar,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 26:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 26:  v = e,
-                where Type(v) is int and Type(e) is int
-Checking types: Line 27: Parameter #1 in call ongcd,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 27: Parameter #2 in call ongcd,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 27: Parameter #1 in call onputint,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 27: Parameter #1 in call onputchar,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 28: Parameter #1 in call onexit,
-                where Type(actual) is int and Type(formal) is int
+Binding: Line 10: a refers to declaration in line 7
+Binding: Line 10: b refers to declaration in line 7
+Binding: Line 11: a refers to declaration in line 7
+Binding: Line 11: b refers to declaration in line 7
+Binding: Line 12: b refers to declaration in line 7
+Binding: Line 12: b refers to declaration in line 7
+Binding: Line 12: a refers to declaration in line 7
+Binding: Line 14: a refers to declaration in line 7
+Binding: Line 14: a refers to declaration in line 7
+Binding: Line 14: b refers to declaration in line 7
+Binding: Line 17: a refers to declaration in line 7
+Binding: Line 24: LF refers to declaration in line 4
+Binding: Line 25: putchar refers to declaration in the library
+Binding: Line 25: putchar refers to declaration in the library
+Binding: Line 26: v1 refers to declaration in line 22
+Binding: Line 26: getint refers to declaration in the library
+Binding: Line 26: v2 refers to declaration in line 22
+Binding: Line 26: getint refers to declaration in the library
+Binding: Line 27: putint refers to declaration in the library
+Binding: Line 27: gcd refers to declaration in the library
+Binding: Line 27: v1 refers to declaration in line 22
+Binding: Line 27: v2 refers to declaration in line 22
+Binding: Line 27: putchar refers to declaration in the library
+Binding: Line 27: LF refers to declaration in line 4
+Binding: Line 28: exit refers to declaration in the library
 AlboC error: Running gcc produced errors!

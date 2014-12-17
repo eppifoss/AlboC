@@ -2,7 +2,7 @@
 =====
 INF2100-Project Assignment. Creating a compiler for AlboC.
 
->Del 1.0.
+>Del 2.0.
 
 ##Compilation
 To compile the program run the command :

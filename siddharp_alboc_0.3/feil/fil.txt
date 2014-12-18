@@ -1,4 +1,0 @@
-kommentar.alboc
-kommentar.message
-kommentar2.alboc
-tegn.alboc

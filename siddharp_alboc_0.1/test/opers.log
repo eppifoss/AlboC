@@ -1,5 +1,0 @@
- 0:  
- 1:  # Test all the operators
- 2:  
- 3:  int print (int x, int op1, int op2, int y, int res)
-AlboC error in line 3: A rightParToken expected, but found a intToken!

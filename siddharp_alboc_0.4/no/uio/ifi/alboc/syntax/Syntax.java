@@ -1019,15 +1019,15 @@ class Assignment extends SyntaxUnit {
 			  lineNum);
 	
 	if((lhs.type instanceof ValueType)){
-		if(lhs.type.isSameType(e.type)){
-		    return;
-		}
-		if(e.type == Types.intType){
-		    return;
-		}
-
+	    if(lhs.type.isSameType(e.type)){
+		return;
 	    }
-	    error("Assignment must be of int or of the same type");
+	    if(e.type == Types.intType){
+		return;
+	    }
+
+	}
+	error("Assignment must be of int or of the same type");
     }
 	    
     
@@ -1607,39 +1607,42 @@ class Factor extends SyntaxUnit {
    
     @Override void check(DeclList curDecls) {
 	//-- Must be changed in part 2:
-	for (int i = 0; i < prims.size(); i++) {
-	    Primary p = prims.get(i);
-	    if(p != null){
+	int i = 0;
+	Primary p = prims.get(i);
+	if(p!= null){
+	    p.check(curDecls);
+	    type = p.type;
+	}
+	Operator po = opers.get(i);
+	while( po != null){
+	    po.check(curDecls);
+	    p = prims.get(++i);
+	    System.out.println("P ============= "+ p);	    
+	    if(p!= null) {
 		p.check(curDecls);
-		type = p.type;
 	    }
-	    if (i != prims.size()-1) {
-		Operator po = opers.get(i);
-		po.check(curDecls);
-	    }
+	    po = opers.get(i);
 	}
     }
    
     @Override void genCode(FuncDecl curFunc) {
 	//-- Must be changed in part 2:
-	for (int i = 0; i < prims.size(); i++) {
-	    Primary p = prims.get(i);
-	    if(p!= null){
+	int i = 0;
+	Primary p = prims.get(i);
+	if(p!= null){
+	    p.genCode(curFunc);
+	}
+	Operator po = opers.get(i);
+	while( po != null){
+	    p = prims.get(++i);
+	    System.out.println("P ============= "+ p);	    
+	    if(p != null){
+		Code.genInstr("","pushl","%eax","");
 		p.genCode(curFunc);
 	    }
-	    if (i != prims.size()-1) {
-		p = prims.get(i+1);
-		if( p != null){
-		    Code.genInstr("","pushl","%eax","");
-		    p.genCode(curFunc);
-		}
-		Operator op = opers.get(i);
-		if(op!=null){
-		    op.genCode(curFunc);
-		}
-		i++;
-	    }
-	}	
+	    po.genCode(curFunc);
+	    po = opers.get(i);
+	}
     }
    
     static Factor parse() {
@@ -1655,15 +1658,19 @@ class Factor extends SyntaxUnit {
     }
    
     @Override void printTree() {
-	for (int i = 0; i < prims.size(); i++) {
-	    Primary p = prims.get(i);
-	    if(p!= null){
+	int i = 0;
+	Primary p = prims.get(i);
+	if(p!= null){ p.printTree(); }
+	Operator po = opers.get(i);
+	while( po != null){
+	    po.printTree();
+	    p = prims.get(++i);
+	    System.out.println("P ============= "+ p);
+	    if(p != null){
 		p.printTree();
+		System.out.println("NOT NULL");
 	    }
-	    if (i != prims.size()-1) {
-		Operator po = opers.get(i);
-		po.printTree();
-	    }
+	    po = opers.get(i);
 	}
     }
 }
@@ -1862,7 +1869,7 @@ class PrimaryList extends SyntaxUnit {
 	    first = last = p;
 	} else { 
 	    last.nextPrim = p;
-	    p = last;
+	    last = p;
 	}
 	size++;
     }
@@ -2043,11 +2050,9 @@ class PrefixOpr extends Operator {
    
     static PrefixOpr parse() {
 	Log.enterParser("<prefix opr>");
-   
 	PrefixOpr po = new PrefixOpr();
 	po.oprToken = Scanner.curToken;
 	Scanner.readNext();
-   
 	Log.leaveParser("</prefix opr>");
 	return po;
     }
@@ -2431,7 +2436,6 @@ class InnerExpr extends Operand {
 	Scanner.skip(leftParToken);
 	ie.expr = Expression.parse();
 	Scanner.skip(rightParToken);
-   
 	Log.leaveParser("</inner expr>");
 	return ie;
     }

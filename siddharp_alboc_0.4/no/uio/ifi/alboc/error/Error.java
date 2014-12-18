@@ -24,10 +24,12 @@ public class Error {
     }
 	
     public static void error(int lineNum, String message) {
-	if (lineNum > 0)
+	if (lineNum > 0){
+	    lineNum++;
 	    error("in line "+lineNum, message);
-	else
+	}else{
 	    error(message);
+	}
     }
 
     public static void panic(String where) {

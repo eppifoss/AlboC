@@ -94,6 +94,7 @@ abstract class SyntaxUnit {
     void error(String message) {
 	Error.error(lineNum, message);
     }
+
 }
  
  
@@ -110,14 +111,18 @@ class Program extends SyntaxUnit {
 	if (! AlboC.noLink) {
 	    // Check that 'main' has been declared properly:
 	    //-- Must be changed in part 2:
-	    FuncDecl main = (FuncDecl)progDecls.findDecl("main",
-							 this);
+	    FuncDecl main = (FuncDecl) progDecls.findDecl("main",this);
 	    Log.noteBinding("main",-1,main.lineNum);
 	    
 	    if(main != null){
 		if(main.funcParams != null){
 		    error("main cannot have arguments");
 		}
+		if(main.type != Types.intType){
+		    error("'main' should be an int function");
+		}
+	    }else{
+		error("main is not declared !");
 	    }
 	}
 	
@@ -183,6 +188,14 @@ abstract class DeclList extends SyntaxUnit {
 	    firstDecl = d;
 	    lastDecl = d;
 	} else {
+	    Declaration dx = firstDecl;
+	    while(dx != null){
+		if(dx == d){
+		    error("Name "+d.name+" already declared!");
+		    return;
+		}
+		dx = dx.nextDecl;
+	    }
 	    lastDecl.nextDecl = d;
 	    lastDecl = d; 
 	}
@@ -674,7 +687,7 @@ class FuncDecl extends Declaration {
     @Override
     void checkWhetherVariable(SyntaxUnit use) {
 	//-- Must be changed in part 2:
-	error(" is not a variable");
+	error(" "+name+" is a function not a variable");
     }
  
     @Override
@@ -1238,14 +1251,10 @@ class ReturnStatm extends Statement {
     @Override
     void check(DeclList curDecls) {
 	//-- Must be changed in part 2:
-	
 	e.check(curDecls);
-	Log.noteTypeCheck("return e; in int f(...)",
-			  e.type,"e",lineNum );
-
-	if(e.type == Types.intType){
-	    
-	}else{
+	Log.noteTypeCheck("return e; in int f(...)"
+			  ,e.type,"e",lineNum );
+	if(e.type != Types.intType){
 	    error("Error in return type.");
 	}
     }
@@ -1617,7 +1626,7 @@ class Factor extends SyntaxUnit {
 	while( po != null){
 	    po.check(curDecls);
 	    p = prims.get(++i);
-	    System.out.println("P ============= "+ p);	    
+
 	    if(p!= null) {
 		p.check(curDecls);
 	    }
@@ -1635,7 +1644,7 @@ class Factor extends SyntaxUnit {
 	Operator po = opers.get(i);
 	while( po != null){
 	    p = prims.get(++i);
-	    System.out.println("P ============= "+ p);	    
+
 	    if(p != null){
 		Code.genInstr("","pushl","%eax","");
 		p.genCode(curFunc);
@@ -1665,10 +1674,9 @@ class Factor extends SyntaxUnit {
 	while( po != null){
 	    po.printTree();
 	    p = prims.get(++i);
-	    System.out.println("P ============= "+ p);
+
 	    if(p != null){
 		p.printTree();
-		System.out.println("NOT NULL");
 	    }
 	    po = opers.get(i);
 	}

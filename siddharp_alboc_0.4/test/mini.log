@@ -1,3 +1,0 @@
-Checking types: Line 6: return e; in int f(...),
-                where Type(e) is int
-AlboC error: Running gcc produced errors!

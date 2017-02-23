@@ -1,5 +1,0 @@
- 0:  
- 1:  int main ()
- 2:  {
- 3:     /* Dette er lovlig: */  putchar(''');
-AlboC error in line 3: A statement expected, but found a leftParToken!

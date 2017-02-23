@@ -1,9 +1,0 @@
- 1:   # En test av kommentarer, både #... og /*...*/:
- 2:  
- 3:  /* Dette er en kommentar uten slutt.
- 4:  
- 5:  int main ()
- 6:  {
- 7:     putchar('.');  putchar(10);
- 8:  }
-AlboC error in line 2:  comment never ends!

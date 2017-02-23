@@ -1,5 +1,0 @@
-Checking types: Line 2: Parameter #1 in call on putchar,
-                where Type(actual) is int and Type(formal) is int
-Checking types: Line 2: Parameter #1 in call on putchar,
-                where Type(actual) is int and Type(formal) is int
-AlboC error: main cannot have arguments
